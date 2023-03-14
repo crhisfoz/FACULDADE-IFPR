@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      button {
+        padding: 10px;
+        margin-left: 10px;
+        color: red;
+      }
+      body {
+        padding: 20px 40px;
+      }
+      p{
+        line-height: 1.5em;
+        /* border: 1px solid blue; */
+        margin-bottom: 30px;
+      }
+      /* regra por id -  "super especifico" */
+      #frase{
+        color: darkslateblue;
+        font-style: italic;
+        font-size: 18px;
+        text-align: center;
+        margin: 0px 80px;
+      }
+        /* regra por classe -  "super generica" */
+        .texto{
+          color:red;
+          text-align: justify;
+        }
+        .sair{
+          border: 1px solid blue ;
+          border-radius: 3px;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Seja Bem vindo</h1>
+    
+    <p class="texto">[1]
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. At molestiae
+      nesciunt consequatur, omnis natus sed eum! Laborum adipisci distinctio
+      doloribus, beatae maxime blanditiis voluptates exercitationem perferendis
+      repellendus similique! Cupiditate, vero?
+    </p>
+    <p id="frase" class="texto">2
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. At molestiae
+      nesciunt consequatur, omnis natus sed eum! Laborum adipisci distinctio
+      doloribus, beatae maxime blanditiis voluptates exercitationem perferendis
+      repellendus similique! Cupiditate, vero?
+    </p>
+    <p class="texto">[3]
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. At molestiae
+      nesciunt consequatur, omnis natus sed eum! Laborum adipisci distinctio
+      doloribus, beatae maxime blanditiis voluptates exercitationem perferendis
+      repellendus similique! Cupiditate, vero?
+    </p>
+    <p>(4)
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. At molestiae
+      nesciunt consequatur, omnis natus sed eum! Laborum adipisci distinctio
+      doloribus, beatae maxime blanditiis voluptates exercitationem perferendis
+      repellendus similique! Cupiditate, vero?
+    </p>
+    <button onclick="alert('Clicado')">Entrar</button>
+    <button class="sair" onclick="alert('Logout')">Sair</button>
+  </body>
+</html>
