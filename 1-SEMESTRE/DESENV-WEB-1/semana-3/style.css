@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+        html,body{
+            /* remover todo e qualquer espaço existente na body e html*/
+            margin:0;
+            padding:0
+        }
+
+        body{
+            /*  a pagina ocupa o "minimo" toda a tela na vertical*/
+            min-height: 100vh;
+            /*  definir que a body é um flexbox*/
+            display: flex;
+            /* dfine que os elementos (filhos da body) aparecem em coluna*/
+            flex-direction: column;
+            font-family: 'Montserrat', sans-serif;
+
+        }
+        .titulo{
+            margin-left: 50px;
+        }
+        .topo{
+            padding: 10px;
+            text-align: center;
+            background-color: #ccc;
+            
+        }
+        .conteudo{
+            /*border: 2px solid darkmagenta;*/
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            /*quebra linhba*/
+            gap: 20px;
+        
+            justify-content: center
+        }
+
+        .conteudo p{
+            background-color: #dfdddd;
+            /*largura do paragrafo*/
+            width: 250px;
+            padding: 20px;
+       
+        }
+
+        .menu{
+            background-color:#e1e0e0;
+            margin: 0px 20px;
+            padding: 10px;
+            border-radius: 2px;
+            display: flex;
+
+        }
+        .menu a{
+            /* regra por condição: somente os links dentro do menu recebem esse estilo */
+            text-decoration: none;
+            padding: 15px;
+
+        }
+        .menu a:hover{
+            background-color: cornsilk;
+            border-radius: 3px;
+        }
+        .menu .sair{
+            display: flex;
+            margin-left: auto;
+        }
+        .rodape{
+          background-color: lightcoral;
+            padding: 20px;
+            text-align: center;
+
+        }
+        .container{
+            /*padding: 10px;*/
+            /* regra: expande a container para ocupar espaço vazio*/
+            flex: 1 0 auto;
+        }
