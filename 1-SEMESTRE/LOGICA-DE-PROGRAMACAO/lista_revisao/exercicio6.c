@@ -22,8 +22,8 @@ int main() {
 		
 	//saída
 	
-	printf("O valor total de sua compra com um desconto de 10 é %.2f: ", price_discount);
-	printf("\n E o valor de sua compra com um acréscimo de 5% é %.2f: ", price_addition);
+	printf("O valor total de sua compra com um desconto de 10%% é %.2f: ", price_discount);
+	printf("\n E o valor de sua compra com um acréscimo de 5%% é %.2f: ", price_addition);
 	
 	
 	return 0;
