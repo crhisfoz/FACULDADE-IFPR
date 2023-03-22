@@ -1,0 +1,15 @@
+form{
+    display: grid;
+    /* define que o formulario possui 2 colunas*/
+    grid-template-columns: min-content 200px;
+    /**/
+    gap: 20px;
+}
+
+label{
+    justify-self: left;
+}
+button{
+grid-column: 2/3;
+justify-self: left;
+}
