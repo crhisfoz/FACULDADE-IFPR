@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans&display=swap');
+* {
+  font-family: 'Albert Sans';
+}
+form{
+  background-color: rgb(165, 241, 165);
+  color: navy;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  border: 2px solid green;
+  gap: 10px;
+  padding: 50px;
+  width: fit-content;
+}
+
+button{
+  grid-column: 1/2;
+  justify-self: left;
+}
+

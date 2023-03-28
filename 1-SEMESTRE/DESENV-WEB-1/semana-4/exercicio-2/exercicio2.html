@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css" />
+    <title>Formularios</title>
+</head>
+
+<body>
+    <main>
+        <div class="conteudo">
+            <form>
+                <label> Nome</label>
+                <input type="text"
+                 name="nome"
+                 placeholder="Nome"
+                 required
+                 minlength="3"
+    
+                 >
+
+                 <label> Email</label>
+                <input type="email"
+                 name="email"
+                 placeholder="user@example.org"
+                 required
+                 >
+
+                 <label> Password</label>
+                 <input type="password"
+                  name="password"
+                  placeholder="6 caracteres"
+                  required
+                  minlength="6"
+                  minlength="10"
+                  >
+
+                <label>Possui conhecimento ? </label>
+
+                <div>
+  
+                    <label>  
+                        <input type="checkbox" name="conhecimento" value="0">JavaScript
+                    </label>
+                    <label> 
+                        <input type="checkbox" name="conhecimento"  value="1"> HTML
+                    </label>
+                    <label> 
+                        <input type="checkbox" name="conhecimento"  value="2"> CSS
+                    </label>
+
+                </div>
+
+                <label>Curso</label>
+                <select>
+                    <option>--Selecione-- </option>
+                    <option>--Análise e Desenvolvimento-- </option>
+                    <option>--Física-- </option>
+                    <option>--Matemática-- </option>
+                </select>
+
+
+                <label>Turno </label>
+
+                <div>
+  
+                    <label>  
+                        <input type="radio" name="turno" value="0">Tarde
+                    </label>
+                    <label> 
+                        <input type="radio" name="turno"  value="1"> Noite
+                    </label>
+
+                </div>
+
+                <label>Motivo matrícula</label>
+                <textarea rows="6"></textarea>
+
+                <button>enviar</button>
+            </form>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+
+</html>

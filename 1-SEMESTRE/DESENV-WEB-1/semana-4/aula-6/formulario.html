@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css"/>
+    <title>Formularios</title>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Cadastro usuário</h1>
+        </header>
+        <nav>
+          <a href="servicos.html">planos</a>
+        </nav>
+
+        <div class="conteudo">
+          <form>
+            <label>Nome</label>
+            <input type="text"
+            name="nome"
+            required 
+            minlength="6"
+            maxlength="8"
+            autocomplete="off"
+            />
+
+            <label>Email</label>
+            <input type="text" 
+            name="email"
+            placeholder="teste@teste.org"
+             />
+
+            <label>Idade</label>
+            <input type="number" name="idade" min="8">
+
+            <label>Data nascimento</label>
+            <input type="date" name="dataNasc">
+
+            <label>Password</label>
+            <input type="password" name="senha">
+
+            <label>Feedback</label>
+            <textarea rows="6"></textarea>
+
+            <button>enviar</button>
+          </form>
+          </div>
+    </main>
+    <footer></footer>
+</body>
+</html>

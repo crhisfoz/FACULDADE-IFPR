@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans&display=swap');
+* {
+  font-family: 'Albert Sans';
+}
+form{
+  display: grid;
+  grid-template-columns: max-content max-content;
+  gap: 10px;
+  padding: 10px 20px;
+  width: fit-content;
+}
+
+form label{
+  justify-self: right;
+}
+
+button{
+  grid-column: 2/2;
+  justify-self: left;
+}
+
+input:required:invalid{
+  color:red;
+}

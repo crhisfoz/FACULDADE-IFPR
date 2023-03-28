@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans&display=swap');
+* {
+  font-family: 'Albert Sans';
+}
+h1 {
+    color: #21084d;
+    margin: 0;
+}
+form { 
+  display: inline-grid;
+  /* define que o formulario possui 2 colunas*/
+  grid-template-columns: max-content max-content;
+  /* espaçamento entre as linhas e colunas */
+  gap: 10px;
+  border: 2px solid #b893f7;
+  padding: 20px
+
+}
+/*adicionar uma borda vemelha num input invalido*/
+input:required:invalid{
+  border: 2px solid red;
+}
+input:required:valid{
+  border: 2px solid green;
+}
+input:focus{
+  outline: none;
+}
+label {
+  justify-self: right;
+}
+button {
+  grid-column: 2/3;
+  justify-self: left;
+}
+nav{
+  padding: 10px 0px;
+}
+nav a {
+  text-decoration-color: #6f3cdc4e;  
+  text-underline-position: under;
+}
+nav a:hover {
+  text-decoration-color: rgb(80, 54, 141);
+}
+
+
+
+
+
+

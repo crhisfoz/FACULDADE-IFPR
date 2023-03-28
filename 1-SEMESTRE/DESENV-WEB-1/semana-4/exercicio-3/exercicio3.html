@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css" />
+    <title>Formularios</title>
+</head>
+
+<body>
+    <main>
+        <div class="conteudo">
+            <h1>Cadastro Usuário</h1>
+            <form>
+                <label> Nome</label>
+                <input type="text"
+                 name="nome"
+                 placeholder="Nome"
+                 required
+                 minlength="3"
+    
+                 >
+
+                 <label> Email</label>
+                <input type="email"
+                 name="email"
+                 placeholder="user@example.org"
+                 required
+                 >
+
+                 <label> Nascimento</label>
+                 <input type="date"
+                  name="password"
+                  required
+                  >
+
+                <label>País</label>
+                <select>
+                    <option>Selecione</option>
+                    <option>Brasil- </option>
+                    <option>Jamaica </option>
+                    <option>Argentina </option>
+                </select>
+
+                <label>  Idade</label>
+
+                <div class="phone">
+                    <input type="text" name="idade" value="">
+                    <label> DDD
+                        <input type="text" name="ddd"  value=""> 
+                    </label>
+                    <label> Telefone 
+                        <input type="text" name="telefone" value="" id="telefone">
+                    </label>
+
+                </div>
+
+
+                <button>Adicionar</button>
+            </form>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+
+</html>
