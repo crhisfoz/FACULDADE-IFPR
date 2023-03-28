@@ -1,0 +1,38 @@
+body{
+    margin: 0;
+    padding:10px;
+    height: 100vh;
+}
+header{
+    padding: 10px;
+}
+
+header img{
+    width: 200px;
+    height: 80px;
+    border-radius: 20px;
+}
+
+ main{
+    min-height: 70vh;
+}
+ 
+footer{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+footer a{
+    position: bottom;
+}
+
+a{
+    color: inherit;
+}
+
+a:link{
+    color: red
+}
+a:visited{
+    color: green;
+}
