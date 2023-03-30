@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: grid;
+            /* ajusta o tamanho da tabela de acordo com o conteúdo*/
+            width: fit-content;
+            /* 1fr fraction */
+            /* define a quantidade de colunas */
+            grid-template-columns: 1fr 1fr 1fr;
+            border: 1px solid red; 
+            text-align: center;
+        }
+        .container div{
+            border: 1px solid;
+            padding: 10px;
+            border: 1px solid red; 
+        }
+        /* th - header da grid */
+        .head{
+            background:#ccc;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- cabeçalho/header da tabela-->
+        <div class="head">Nome</div>
+        <div class="head">Marca</div>
+        <div class="head">Consumo</div>
+
+        <div>Gol</div>
+        <div>VW</div>
+        <div>15 km/l</div>
+
+        <div>Palio</div>
+        <div>Fiat</div>
+        <div>16 km/l</div>
+
+        <div>Onix</div>
+        <div>GM</div>
+        <div>18 km/l</div>
+        
+    </div>
+    
+</body>
+</html>

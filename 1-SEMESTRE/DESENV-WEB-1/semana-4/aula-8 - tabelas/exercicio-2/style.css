@@ -1,0 +1,29 @@
+.exercicio2{
+    border-collapse: collapse;    
+    
+}
+.exercicio2 td{
+    border: 1px solid black;
+    padding: 5px;
+
+}
+.header{
+    background: rgb(243,213,124);
+
+}
+.subtitle{
+    background: #97cbfa;
+}
+
+.exercicio2 th{
+ 
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.footer{
+    background: #e6e6e6;
+    font-size: 8px;
+    text-align: center;
+}
+
