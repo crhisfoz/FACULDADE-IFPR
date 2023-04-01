@@ -1,0 +1,17 @@
+body {
+    background: #f3f3f3;
+}
+.estados{
+    border-spacing: 5px;
+    border: 2px solid navy;
+}
+.estados td{
+    background:rgb(243, 243, 162) ;
+    padding: 5px 10px;
+
+}
+
+.estados th{
+    background: #b2f4e2;
+
+}
