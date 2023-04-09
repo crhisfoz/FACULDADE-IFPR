@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Albert+Sans&display=swap');
 * {
   font-family: 'Albert Sans';
+  padding: 0;
+  margin: 0
 }
 
 body{
@@ -8,53 +10,46 @@ body{
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover; 
-  height: 100vh;
+  display: flex;
+  justify-content: center;
 }
-h1{
-  color:#fff;
-}
-.conteudo{
-text-align: center;
-color: rgb(128, 245, 128);
-min-height:80vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-border: 2px solid rgb(174, 245, 68);
-margin: 0 200px 400px 200px;
-border-radius: 5px;
 
+.conteudo{
+  border: 2px solid rgb(86, 219, 153);
+  color: rgb(107, 207, 165);
+  margin-top: 20px;
+  border-radius: 5px;
+  text-align: center;
+  padding:20px ;
+  background: rgba(38, 97, 65, 0.35);
+}
+.conteudo h1{
+  color: #fff;
+  margin: 20px  40px ;
 }
 form{
   display: grid;
-  grid-template-columns: min-content 500px;
-  gap: 20px;
-  padding: 10px 20px;
-  align-items: center;
-
-background-color: rgb(54, 90, 54);
-opacity: 0.8;
-}
-form input{
-  height: 30px;
+  grid-template-columns: max-content max-content;
+  gap: 10px;
 }
 form label{
   justify-self: right;
+  align-self: center;
 }
-.phone{
-  width: fit-content;
+form input, select{
+  height: 30px;
+  border: 2px solid rgb(0, 153,153);
+  border-radius: 4px;
+  padding-left: 5px;
 }
-
-.phone input{
-  width: 40px ;
+.data input{
+  width: 80px;
 }
-
-.phone #telefone{
-  width: 100px;
+.data #telefone{
+  width: 150px;
 }
-
 button{
-  grid-column: 2/2;
-  justify-self: left;
-}
-
+   grid-column: 2/2;
+   justify-self: left;
+   padding: 5px;
+  }
