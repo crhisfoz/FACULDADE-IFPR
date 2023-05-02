@@ -1,0 +1,15 @@
+div{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+   
+}
+
+label, input{
+    width: fit-content;
+    
+}
+
+button{
+    width: fit-content;
+    grid-column:2/3;
+}
