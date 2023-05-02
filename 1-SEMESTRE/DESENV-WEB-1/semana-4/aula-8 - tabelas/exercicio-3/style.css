@@ -1,0 +1,26 @@
+.exercicio3{
+    border-collapse: collapse;
+    border: 1px solid black;
+    
+}
+.exercicio3 td{
+    
+    padding: 5px;
+    
+}
+.header{
+    background:#6E6E6E;
+    color: #fff
+
+}
+
+img{
+    width: 100px;
+}
+
+tr{
+    border: 1px solid black;
+}
+th{
+    padding: 10px;
+}
