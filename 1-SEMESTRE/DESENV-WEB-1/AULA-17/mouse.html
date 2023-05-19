@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos Mouse</title>
+    <script></script>
+    <style>
+        .caixa{
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+        }
+        .caixa.red{
+            background-color: red;
+        }
+        .caixa.blue{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div onmouseover="aumenta(this)" 
+         onmouseout="diminui(this)"
+         onclick="alteraCor(this)"
+         class="caixa red"></div>
+    <div onmouseover="aumenta(this)" 
+         onclick="alteraCor(this)" 
+         onmouseout="diminui(this)"
+         class="caixa blue"></div>
+         <input type="text" onkeyup="copiar(this)">
+         <textarea id="texto"></textarea>
+    <script>
+        function copiar(el){
+            let textarea = document.getElementById("texto");
+            textarea.value = el.value.toUpperCase();
+
+        }
+
+        function aumenta(element){
+            // declara var que associa a div
+            element.style.width = "200px";
+            element.style.height = "200px";
+
+        }
+
+        function diminui(element){
+            // declara var que associa a div
+            
+            element.style.width = "50px";
+            element.style.height = "50px";
+
+        }
+
+        function alteraCor(element){   
+        element.style.backgroundColor = "yellow";
+        }
+
+    </script>
+</body>
+</html>
