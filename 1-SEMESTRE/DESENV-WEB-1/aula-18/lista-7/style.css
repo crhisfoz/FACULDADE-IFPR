@@ -1,0 +1,21 @@
+div{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+span{
+    height: 50px;
+    width: 50px;
+}
+
+span#red{
+    background-color: red;
+}
+span#blue{
+    background-color: blue;
+}
+span#yellow{
+    background-color: yellow;
+}
+span#green{
+    background-color: green;
+}

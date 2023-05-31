@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valores</title>
+</head>
+<body>
+    <h1>Soma Valores</h1>
+    <input onChange="soma()" type="number" value="1"/>
+    <input onChange="soma()" type="number" value="2"/>
+    <input onChange="soma()" type="number" value="3"/>
+    <button >Soma</button>
+    <p id="total">0</p>
+
+    <input onChange="soma2()" type="number" class="input" value="3"/>
+    <input onChange="soma2()" type="number" class="input"  value="4"/>
+    <input onChange="soma2()" type="number" class="input" value="5"/>
+    <button >Soma</button>
+    <p id="total2">0</p>
+
+    <script>
+        function soma(){
+            //salva em vetor todas as inputs.
+            let items = document.querySelectorAll("input");
+            let p = document.querySelector("#total");
+
+            let total =0;
+
+            //percorre o vetor de inputs:
+            for (let i = 0; i < items.length; i++) {
+                total += Number(items[i].value);
+            }
+            document.querySelector("#total").innerText = total;
+
+        }
+
+        function soma2(e){
+        
+
+            //let newInput = e.target.value;
+    
+            e.addEventListener("onchange",()=>{
+                console.log(e)
+                 //salva em vetor todas as inputs.
+            let items = document.querySelectorAll("input.input");
+            let p = document.querySelector("#total2");
+
+            let total =0;
+
+            //percorre o vetor de inputs:
+            for (let i = 0; i < items.length; i++) {
+                total += Number(items[i].value);
+
+            }
+                document.querySelector("#total").innerText = total;
+            })
+           
+        }
+    </script>
+    
+</body>
+</html>
