@@ -1,0 +1,37 @@
+main{
+    display: flex;
+    flex-direction: column;
+}
+input{
+    height: 20px;
+}
+label{
+    font-weight: bold;
+}
+
+span{
+    background-color: rgb(99, 224, 99);
+    display: inline-block;
+    width:150px;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+button{
+    width: fit-content;
+}
+
+p{
+    background-color: aqua;
+    width: 300px;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+}
+
+#valor-total{
+    background-color: aqua;
+    font-size: 30px;
+}
