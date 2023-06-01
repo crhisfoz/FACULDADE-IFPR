@@ -1,3 +1,6 @@
+// Professor não tive tempo para pesquisar e resolver o bug de só mudar a cor na hora que passa o mouse na segunda vez, se você conseguir resolver e me mandar a resolucao agradeco
+
+
 function mudaCor(el, cor){
     let spans = document.querySelectorAll("span");
     
@@ -20,7 +23,6 @@ function mudaCor(el, cor){
     
     }
 }
-
 
 
 /*function mudaCor(el, cor){

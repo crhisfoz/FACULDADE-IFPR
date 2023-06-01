@@ -1,0 +1,14 @@
+input{
+    height: 20px;
+}
+label{
+    font-weight: bold;
+}
+
+span{
+    background-color: rgb(99, 224, 99);
+    display: inline-block;
+    width:100px;
+    font-weight: bold;
+    font-size: 20px;
+}
