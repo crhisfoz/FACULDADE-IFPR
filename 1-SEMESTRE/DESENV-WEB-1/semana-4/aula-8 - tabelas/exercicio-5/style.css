@@ -1,0 +1,44 @@
+.container{
+    display: grid;
+    /* ajusta o tamanho da tabela de acordo com o conteúdo*/
+    width:fit-content ;
+    /* define a quantidade de colunas */
+    grid-template-columns:1fr;
+    border: 2px solid #CCC;
+    text-align: center; 
+    padding: 5px 5px 0px;
+    
+}
+.content{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 5px 5px 10px 5px;
+    border: 2px solid #CCC;
+    column-gap: 5px;
+}
+.content img{
+    width: 200px;
+    height: 150px;
+
+}
+
+.title{
+    background-color: #5EFB6E;
+    font-weight: bold;
+    padding: 10px 0px;
+    margin: 0;
+}
+.footer{
+    background-color: rgb(7, 7, 133);
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+}
+.resultado span{
+    color:darkgray;
+}
+
+div{
+    margin: 5px 0px;
+}
