@@ -1,7 +1,7 @@
 .container{
     display: grid;
     /* ajusta o tamanho da tabela de acordo com o conteúdo*/
-    width: fit-content;
+    width:20rem;
     /* 1fr fraction */
     /* define a quantidade de colunas */
     grid-template-columns:1fr;
@@ -12,6 +12,7 @@
 .content{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    padding: 0 5px;
 }
 
 .title{
