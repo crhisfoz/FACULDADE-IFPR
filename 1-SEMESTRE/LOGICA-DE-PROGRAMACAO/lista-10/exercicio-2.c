@@ -10,10 +10,12 @@ int main(int argc, char **argv)
 	printf("Digite a 1a String: " );
 	fgets(str,TAM,stdin);
 	tam = strlen(str) -1;
+	str[tam] = '\0';
 	
 	printf("Digite a 2a String: " );
 	fgets(str2, TAM,stdin);
 	tam2 = strlen(str2) -1;
+	str2[tam2] = '\0';
 	
 	strcpy(str3,str);
 	strcat(str3, " ");
@@ -21,7 +23,7 @@ int main(int argc, char **argv)
 	// verificar o porque está imprimindo em 2 linhas separadas
 	tam3 = strlen(str3) -1;
 	
-	printf("string3: %s", str3);
+	printf("string3: %s \n", str3);
 	printf("Tamanhos: %d %d %d \n: ", tam,tam2, tam3);
 			
 	
