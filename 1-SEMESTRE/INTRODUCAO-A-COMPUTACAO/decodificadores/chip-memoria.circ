@@ -74,13 +74,35 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(400,190)" to="(400,280)"/>
     <wire from="(340,250)" to="(380,250)"/>
     <wire from="(420,190)" to="(420,310)"/>
-    <comp lib="0" loc="(340,250)" name="Pin">
+    <comp lib="0" loc="(340,370)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="Escrita"/>
+      <a name="label" val="Limpar"/>
     </comp>
     <comp lib="0" loc="(340,310)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="Clock"/>
+    </comp>
+    <comp lib="0" loc="(340,280)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="Seleção de memória"/>
+    </comp>
+    <comp lib="0" loc="(160,200)" name="Pin">
+      <a name="width" val="8"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="Entrada"/>
+    </comp>
+    <comp lib="0" loc="(340,250)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="Escrita"/>
+    </comp>
+    <comp lib="0" loc="(340,340)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="Leitura"/>
+    </comp>
+    <comp lib="0" loc="(240,150)" name="Pin">
+      <a name="width" val="4"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="Endereço"/>
     </comp>
     <comp lib="0" loc="(610,150)" name="Pin">
       <a name="facing" val="west"/>
@@ -89,31 +111,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="Saída"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="0" loc="(340,340)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="Leitura"/>
-    </comp>
-    <comp lib="0" loc="(160,200)" name="Pin">
-      <a name="width" val="8"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="Entrada"/>
-    </comp>
     <comp lib="4" loc="(490,150)" name="RAM">
       <a name="addrWidth" val="4"/>
       <a name="bus" val="separate"/>
-    </comp>
-    <comp lib="0" loc="(340,280)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="Seleção de memória"/>
-    </comp>
-    <comp lib="0" loc="(240,150)" name="Pin">
-      <a name="width" val="4"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="Endereço"/>
-    </comp>
-    <comp lib="0" loc="(340,370)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="Limpar"/>
     </comp>
   </circuit>
 </project>
