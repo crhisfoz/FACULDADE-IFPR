@@ -15,7 +15,7 @@ void insereItemLista(tpLista lista1, char *item)
  if (i<MaxItens)
  {
  strcpy(lista1[i],item); 
- printf("\nItem (%s) inserido com sucesso",item);
+ printf("\nItem \'%s\' inserido com sucesso",item);
  }
  else {
 	  printf("\nLista cheia, não pode inserir");
@@ -29,7 +29,7 @@ void retiraItemLista(tpLista lista1, char *item)
  for(i=0; i<MaxItens && strlen(lista1[i])>0 && (strcmp(lista1[i],item) != 0); i++);
  if (i<MaxItens && (strcmp(lista1[i],item) == 0))
  { 
- printf("\nItem (%s) encontrado, removendo",item);
+ printf("\nItem \'%s\' encontrado, removendo",item);
  if (i < (MaxItens-1))
  {
  for (;i<(MaxItens-1) && strlen(lista1[i])>0;i++)
@@ -39,7 +39,7 @@ void retiraItemLista(tpLista lista1, char *item)
  lista1[MaxItens-1][0] = '\0';
  }
  else 
- printf("\nItem (%s) não encontrado",item);
+ printf("\nItem \'%s\' não encontrado",item);
 }
 
 void criarLista(tpLista lista1){
@@ -71,6 +71,7 @@ int switchOp(int op){
 	switch(op){
 		case 1:
 			printf("Digite o Item que deseja inserir: \n");
+			//fflush(stdin);
 			__fpurge(stdin);
 			fgets(item, TamItem, stdin);
 			tam = strlen(item) -1;
@@ -79,13 +80,15 @@ int switchOp(int op){
 			break;
 		case 2:
 			printf("Digite o Item que deseja retirar: \n");
+			//fflush(stdin);
+			__fpurge(stdin);
 			fgets(item, TamItem, stdin);
 			tam = strlen(item) -1;
 			item[tam] = '\0';
 			retiraItemLista(lista1,item);
 			break;
-		case 3:printf("Encerrando o Programa, Até Breve \n");
-			contaItensLista(lista1);
+		case 3:
+		printf("Existem \'%d\' itens na lista\n", contaItensLista(lista1));
 			break;
 		case 4:
 			imprimeItemLista(lista1);
@@ -115,7 +118,7 @@ int main()
          printf("3. Contar elementos da Lista\n");
          printf("4. Exibir o conteudo da Lista\n");
          printf("9. Encerrar o programa.\n");
-         printf("\n Digite o numero da opcao desejada: ");
+         printf("\nDigite o numero da opcao desejada: ");
          scanf("%d", &op);
          switchOp(op);
                  
