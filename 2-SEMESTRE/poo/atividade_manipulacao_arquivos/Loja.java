@@ -45,32 +45,26 @@ public class Loja {
         }
         return exitName;
     }
+
     public void readFile() throws Exception {
         String defaultName = "preco_custo.csv";
         BufferedReader fileReader = new BufferedReader(new FileReader(readName(defaultName)));
-    
+
         String line;
         float costPrice;
         System.out.println("Digite a porcentagem que deseja obter de lucro: ");
         float percentage = Float.parseFloat(this.reader.readLine());
-    
+
         line = fileReader.readLine();
         while ((line = fileReader.readLine()) != null) {
             String array[] = line.split(";");
             costPrice = Float.parseFloat(array[3].replace(",", "."));
-    
+
             float finalPrice = this.sellingPriceCost(percentage, costPrice);
             String newLine = array[0] + ";" + array[2] + ";" + String.format("%.2f", finalPrice);
             writeFile(newLine);
         }
         fileReader.close();
-    }
-
-    public void writeHeader() throws Exception {
-        String defaultName = "preco_venda.csv";
-
-        this.writer = new BufferedWriter(new FileWriter(readName(defaultName)));
-
     }
 
     public void writeFile(String newLine) throws Exception {
@@ -79,14 +73,15 @@ public class Loja {
             this.writer = new BufferedWriter(new FileWriter(readName(defaultName), true));
         }
         if (!headerWritten) {
-            String cabecalho = "Código; Produto ; Preço";
-            this.writer.write(cabecalho);
+            String header = "Código; Produto ; Preço";
+            this.writer.write(header);
             this.writer.newLine();
             headerWritten = true;
         }
         this.writer.write(newLine);
         this.writer.newLine();
     }
+
     public void closeWriter() throws Exception {
         if (this.writer != null) {
             this.writer.close();
@@ -95,10 +90,9 @@ public class Loja {
 
     public static void main(String[] args) throws Exception {
 
-        Loja manipulaMetodos = new Loja();
-        // manipulaMetodos.writeHeader();
-        manipulaMetodos.readFile();
-        manipulaMetodos.closeWriter();
+        Loja handleMetods = new Loja();
+        handleMetods.readFile();
+        handleMetods.closeWriter();
 
     }
 
