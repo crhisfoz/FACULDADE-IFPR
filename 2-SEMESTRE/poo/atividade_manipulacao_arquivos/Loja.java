@@ -74,8 +74,10 @@ public class Loja {
     }
 
     public void writeFile(String newLine) throws Exception {
-        String defaultName = "preco_venda.csv";
-        this.writer = new BufferedWriter(new FileWriter(readName(defaultName), true));
+        if (this.writer == null) {
+            String defaultName = "preco_venda.csv";
+            this.writer = new BufferedWriter(new FileWriter(readName(defaultName), true));
+        }
         if (!headerWritten) {
             String cabecalho = "Código; Produto ; Preço";
             this.writer.write(cabecalho);
@@ -84,7 +86,11 @@ public class Loja {
         }
         this.writer.write(newLine);
         this.writer.newLine();
-        this.writer.close();
+    }
+    public void closeWriter() throws Exception {
+        if (this.writer != null) {
+            this.writer.close();
+        }
     }
 
     public static void main(String[] args) throws Exception {
@@ -92,6 +98,7 @@ public class Loja {
         Loja manipulaMetodos = new Loja();
         // manipulaMetodos.writeHeader();
         manipulaMetodos.readFile();
+        manipulaMetodos.closeWriter();
 
     }
 
