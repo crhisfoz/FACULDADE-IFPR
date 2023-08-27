@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
@@ -8,11 +9,7 @@ public class Loja {
     private BufferedReader reader;
     private BufferedWriter writer;
     private boolean headerWritten = false;
-
-    public float sellingPriceCost(float percentage, float costPrice) throws Exception {
-
-        return ((percentage / 100) * costPrice) + costPrice;
-    };
+    private String currentFileName = null;
 
     public String readName(String defaultName) throws Exception {
         this.reader = new BufferedReader(new InputStreamReader(System.in));
@@ -51,29 +48,43 @@ public class Loja {
         BufferedReader fileReader = new BufferedReader(new FileReader(readName(defaultName)));
 
         String line;
-        float costPrice;
         System.out.println("Digite a porcentagem que deseja obter de lucro: ");
-        float percentage = Float.parseFloat(this.reader.readLine());
+        float percentage = Float.parseFloat(this.reader.readLine().replace(',', '.'));
 
         line = fileReader.readLine();
         while ((line = fileReader.readLine()) != null) {
             String array[] = line.split(";");
-            costPrice = Float.parseFloat(array[3].replace(",", "."));
-
-            float finalPrice = this.sellingPriceCost(percentage, costPrice);
-            String newLine = array[0] + ";" + array[2] + ";" + String.format("%.2f", finalPrice);
-            writeFile(newLine);
+            Product product = new Product(array);
+            String finalPrice = product.setPriceSelling(percentage, product.getPrice());
+            String newLineSell = product.getCode() + ";" + product.getName() + ";" + finalPrice;
+            writeFile(newLineSell, "preco_venda.csv");
+            if (product.getStock() < 10) {
+                String newLineBuy = product.getCode() + ";" + product.getStock() + ";" + product.getName() + ";"
+                        + product.getPrice() + ";" + product.getCategory();
+                writeFile(newLineBuy, "comprar.csv");
+            }
         }
         fileReader.close();
     }
 
-    public void writeFile(String newLine) throws Exception {
-        if (this.writer == null) {
-            String defaultName = "preco_venda.csv";
-            this.writer = new BufferedWriter(new FileWriter(readName(defaultName), true));
+    public void writeFile(String newLine, String fileName) throws Exception {
+        if (this.writer == null || !fileName.equals(currentFileName)) {
+            if (this.writer != null) {
+                this.writer.close();
+            }
+            File file = new File(fileName);
+            boolean fileExists = file.exists();
+            this.writer = new BufferedWriter(new FileWriter(fileName, true));
+            currentFileName = fileName;
+            headerWritten = fileExists;
         }
         if (!headerWritten) {
-            String header = "Código; Produto ; Preço";
+            String header;
+            if (fileName.equals("preco_venda.csv")) {
+                header = "Código; Produto ; Preço";
+            } else {
+                header = "Código; Estoque ; Produto; Preco de Custo; Categoria";
+            }
             this.writer.write(header);
             this.writer.newLine();
             headerWritten = true;
