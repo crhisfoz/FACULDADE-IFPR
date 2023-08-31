@@ -9,19 +9,41 @@ $id = vsprintf(
 );
 
 $livros = buscarDados();
+$titulo = $_POST['titulo'] ="";
+$genero = $_POST['genero']="";
+$qtd_pag = $_POST['qtd_pag']="";
+$msgErro = "";
+
 
 if (isset($_POST['submetido'])) {
 
     $titulo = $_POST['titulo'];
     $genero = $_POST['genero'];
     $qtd_pag = $_POST['qtd_pag'];
+    $msgErro = "";
+
+  
+        if(!trim($titulo)){
+            $msgErro =  "Informe o nome do Título!";
+        }
+        elseif(!trim($genero)){
+            $msgErro =  "Informe o Genero do Livro!";
+        }
+        elseif(!trim($qtd_pag)){
+            $msgErro =  "Informe a quantidade de Páginas do Livro!";
+        } else{
+            $livro = array('id' => $id, 'titulo' => $titulo, 'genero' => $genero, 'paginas' => $qtd_pag);
+            array_push($livros, $livro);
+            salvarDados($livros);  
+
+        }
+
+    
+
+    
 
 
-    $livro = array('id' => $id, 'titulo' => $titulo, 'genero' => $genero, 'paginas' => $qtd_pag);
 
-    array_push($livros, $livro);
-
-    salvarDados($livros);
 }
 ?>
 <!DOCTYPE html>
@@ -39,6 +61,7 @@ if (isset($_POST['submetido'])) {
     <h3>Formulário de Livros</h3>
     <form action="" method="POST">
         <input type="text" name="titulo" placeholder="informe o titulo" />
+        <input type="hidden"  id="titulo" value="<?= $msgErro?>"/>
         <br><br>
 
         <select name="genero">
@@ -48,8 +71,10 @@ if (isset($_POST['submetido'])) {
             <option value="R">Romance</option>
             <option value="O">Outro</option>
         </select>
+        <input type="hidden" id="genero" />
         <br><br>
         <input type="number" name="qtd_pag" placeholder="informe a quantidade de páginas" />
+        <input type="hidden" id="paginas" />
         <br><br>
         <input hidden="" name="submetido" value="1" />
         <button type="submit">Gravar</button>
@@ -86,7 +111,7 @@ if (isset($_POST['submetido'])) {
 
                 }?></td>
                 <td><?= $livro['paginas'] ?></td>
-                <td><a href="livros_del.php?id=<?= $livros['id'] ?>">Excluir</a></td>
+                <td><a href="livros_del.php?id=<?= $livro['id'] ?>">Excluir</a></td>
             </tr>
 
         <?php endforeach; ?>
