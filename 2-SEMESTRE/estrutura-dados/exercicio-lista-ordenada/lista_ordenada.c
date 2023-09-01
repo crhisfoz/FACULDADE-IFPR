@@ -2,118 +2,172 @@
 #include <string.h>
 #include <stdlib.h>
 
-struct elemento
+struct element
 {
-    int dado;
-    struct elemento *proxIni;
+    int data;
+    struct element *initialNext;
 };
 
-typedef struct elemento *Lista;
+typedef struct element *List;
 
-Lista criaLista()
+List createList()
 {
     return NULL;
 };
 
-Lista insereNum(Lista li, int num)
+List addNum(List li, int num)
 {
-    Lista numNovo, prox, ant;
-    numNovo = malloc(sizeof(struct elemento));
-    numNovo->dado = num;
-    ant = li;
-    prox = li;
-    while ((prox != NULL) && (prox->dado < num))
+    List newNum, next, prev;
+    newNum = malloc(sizeof(struct element));
+    newNum->data = num;
+    prev = li;
+    next = li;
+    while ((next != NULL) && (next->data < num))
     {
-        ant = prox;
-        prox = prox->proxIni;
+        prev = next;
+        next = next->initialNext;
     };
-    numNovo->proxIni = prox;
-    if (prox != li)
+    newNum->initialNext = next;
+    if (next != li)
     {
-        ant->proxIni = numNovo;
+        prev->initialNext = newNum;
     }
     else
     {
-        li = numNovo;
+        li = newNum;
     }
     return li;
 };
 
-/* void imprimeLista(Lista li)
+int countList(List li)
 {
-    Lista ponteiro;
-    printf("\nItens da lista\n");
-    ponteiro = li;
-    while (ponteiro != NULL)
+    List pointer = li;
+    int count;
+    while (pointer->initialNext != NULL)
     {
-        if (ponteiro->proxIni != NULL)
-        {
-            printf("%d - ", ponteiro->dado);
-            ponteiro = ponteiro->proxIni;
-        }
-        else
-        {
-            printf("%d", ponteiro->dado);
-            ponteiro = ponteiro->proxIni;
-            printf("\n");
-        }
-    };
-};
-* // pedir explicacao ao professor do porque ser mais performatico o código abaixo, e porque a lista inserindo no final também é
-* */
+        count++;
+    }
+    return count;
+}
 
-void imprimeLista(Lista li)
+void printList(List li)
 {
-    Lista ponteiro = li;
-    printf("\nItens da lista: ");
-    while (ponteiro != NULL)
+    List pointer = li;
+    printf("\nItens da List: ");
+    while (pointer != NULL)
     {
-        printf("%d", ponteiro->dado);
-        if (ponteiro->proxIni != NULL)
+        printf("%d", pointer->data);
+        if (pointer->initialNext != NULL)
             printf(" - ");
-        ponteiro = ponteiro->proxIni;
+        pointer = pointer->initialNext;
     }
     printf("\n");
 };
 
-Lista retiraNum(Lista li, int el)
+void searchList(List li, int num)
 {
-    Lista p = li, ant = li;
-
-    while ((p != NULL) && (p->dado != el))
+    List pointer = li;
+    while ((pointer != NULL) && (pointer->data != num))
     {
-        ant = p;
-        p = p->proxIni;
+        pointer = pointer->initialNext;
+    };
+    if (pointer != NULL)
+    {
+
+        printf("O elemento \'%d\' foi encontrado, seu endereco se encontra em = %p", num, &pointer);
+    }
+    else
+    {
+        printf("Elemento não encontrado");
+    }
+};
+
+List removeNum(List li, int el)
+{
+    List p = li, prev = li;
+
+    while ((p != NULL) && (p->data != el))
+    {
+        prev = p;
+        p = p->initialNext;
     };
     if (p != NULL)
     {
-        if (p == ant)
+        if (p == prev)
         {
-            li = p->proxIni;
+            li = p->initialNext;
             free(p);
         }
         else
         {
-            ant->proxIni = p->proxIni;
+            prev->initialNext = p->initialNext;
             free(p);
         }
     }
     return (li);
 };
 
+List switchOp(List li, int op)
+{
+    int userOp;
+    switch (op)
+    {
+    case 1:
+        printf("Digite o Item que deseja inserir: \n");
+        scanf("%d", &userOp);
+        li = addNum(li, userOp);
+        break;
+    case 2:
+        printf("Digite o Item que deseja retirar: \n");
+        scanf("%d", &userOp);
+        removeNum(li, userOp);
+        break;
+    case 3:
+        printf("Existem \'%d\' itens na lista\n", countList(li));
+        break;
+    case 4:
+        printList(li);
+        break;
+    case 9:
+        printf("Encerrando o Programa, Até Breve \n");
+        return 9;
+        break;
+    default:
+        return printf("Opcao digitada inválida, encerrando o programa \n");
+    }
+    return li;
+};
+
+void menu(List li, int op)
+{
+    while (op != 9)
+    {
+        printf("\n ----- Menu de Operacoes -----\n");
+        printf("Digite a opcao desejada para efetuar sua operação: \n");
+        printf("1. Para Inserir um elemento.\n");
+        printf("2. Para Retirar um elemento.\n");
+        printf("3. Contar elementos da Lista\n");
+        printf("4. Exibir o conteudo da Lista\n");
+        printf("5. Para Buscar um elemento e exibir seu endereco na Lista\n");
+        printf("9. Encerrar o programa.\n");
+        scanf("%d", &op);
+        li = switchOp(li, op);
+    };
+};
+
 int main(int argc, char **argv)
 {
-    Lista listaIni, listaImpressa;
+    List initialList, printedList;
 
-    listaIni = criaLista();
-    listaImpressa = listaIni;
+    initialList = createList();
+    printedList = initialList;
 
-    listaImpressa = insereNum(listaImpressa, 5);
-    listaImpressa = insereNum(listaImpressa, 10);
-    listaImpressa = insereNum(listaImpressa, 15);
+    printedList = addNum(printedList, 5);
+    printedList = addNum(printedList, 10);
+    printedList = addNum(printedList, 15);
 
-    imprimeLista(listaImpressa);
-    retiraNum(listaImpressa, 10);
-    imprimeLista(listaImpressa);
+    printList(printedList);
+    removeNum(printedList, 10);
+    printList(printedList);
     return 0;
 }
