@@ -39,29 +39,44 @@ List addNum(List li, int num)
     return li;
 };
 
+void printErrorList()
+{
+    printf(" a opção selecionada não pode ser executada, pois a lista ainda está vazia !!\n");
+};
+
 int countList(List li)
 {
     List pointer = li;
-    int count;
-    while (pointer->initialNext != NULL)
+    int count = 0;
+
+    while (pointer != NULL)
     {
         count++;
-    }
+        pointer = pointer->initialNext;
+    };
     return count;
 }
 
 void printList(List li)
 {
     List pointer = li;
-    printf("\nItens da List: ");
-    while (pointer != NULL)
+
+    if (pointer == NULL)
     {
-        printf("%d", pointer->data);
-        if (pointer->initialNext != NULL)
-            printf(" - ");
-        pointer = pointer->initialNext;
+        printErrorList();
     }
-    printf("\n");
+    else
+    {
+        printf("\nItens da Lista: ");
+        while (pointer != NULL)
+        {
+            printf("%d", pointer->data);
+            if (pointer->initialNext != NULL)
+                printf(" - ");
+            pointer = pointer->initialNext;
+        }
+        printf("\n");
+    };
 };
 
 void searchList(List li, int num)
@@ -74,15 +89,15 @@ void searchList(List li, int num)
     if (pointer != NULL)
     {
 
-        printf("O elemento \'%d\' foi encontrado, seu endereco se encontra em = %p", num, &pointer);
+        printf("O elemento \'%d\' foi encontrado, seu endereco se encontra em = %p", num, &pointer->data);
     }
     else
     {
-        printf("Elemento não encontrado");
+        printf("Elemento não encontrado\n");
     }
 };
 
-List removeNum(List li, int el)
+List removeList(List li, int el)
 {
     List p = li, prev = li;
 
@@ -104,42 +119,53 @@ List removeNum(List li, int el)
             free(p);
         }
     }
+    else
+    {
+        printf("Elemento não encontrado\n");
+    };
     return (li);
 };
 
 List switchOp(List li, int op)
 {
+    List pointer = li;
     int userOp;
     switch (op)
     {
     case 1:
         printf("Digite o Item que deseja inserir: \n");
         scanf("%d", &userOp);
-        li = addNum(li, userOp);
+        pointer = addNum(pointer, userOp);
         break;
     case 2:
         printf("Digite o Item que deseja retirar: \n");
         scanf("%d", &userOp);
-        removeNum(li, userOp);
+        pointer = removeList(pointer, userOp);
         break;
     case 3:
-        printf("Existem \'%d\' itens na lista\n", countList(li));
+        printf("Existem \'%d\' itens na lista\n", countList(pointer));
         break;
     case 4:
-        printList(li);
+        printList(pointer);
+        break;
+    case 5:
+		printf("Digite o Item que deseja Buscar: \n");
+        scanf("%d", &userOp);
+        searchList(pointer,userOp);
         break;
     case 9:
         printf("Encerrando o Programa, Até Breve \n");
-        return 9;
         break;
     default:
-        return printf("Opcao digitada inválida, encerrando o programa \n");
+        printf("Opcao digitada inválida, encerrando o programa \n");
     }
-    return li;
+    return pointer;
 };
 
-void menu(List li, int op)
+void menu()
 {
+    List li = createList();
+    int op = 0;
     while (op != 9)
     {
         printf("\n ----- Menu de Operacoes -----\n");
@@ -157,17 +183,6 @@ void menu(List li, int op)
 
 int main(int argc, char **argv)
 {
-    List initialList, printedList;
-
-    initialList = createList();
-    printedList = initialList;
-
-    printedList = addNum(printedList, 5);
-    printedList = addNum(printedList, 10);
-    printedList = addNum(printedList, 15);
-
-    printList(printedList);
-    removeNum(printedList, 10);
-    printList(printedList);
+    menu();
     return 0;
 }
