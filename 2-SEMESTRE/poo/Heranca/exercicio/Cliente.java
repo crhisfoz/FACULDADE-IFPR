@@ -1,40 +1,37 @@
-public class Cliente extends Pessoa{
+import java.text.DecimalFormat;
+
+public class Cliente extends Pessoa {
     private float renda;
-    private String produtoComprado;
-    private float valorGasto;
-    private String listaDesejos;
-    private String produtoEmEspera;
-    
+    private float totalGasto;
+
+    public Cliente(Pessoa pessoa, float renda, float totalGasto) {
+        super(pessoa.getNome(), pessoa.getCpf(), pessoa.getEndereco(), pessoa.getDataNasc(), pessoa.getTelefone(),
+                pessoa.getEmail());
+        this.renda = renda;
+        this.totalGasto = totalGasto;
+    }
+
     public float getRenda() {
         return renda;
     }
+
     public void setRenda(float renda) {
         this.renda = renda;
     }
-    public String getProdutoComprado() {
-        return produtoComprado;
-    }
-    public void setProdutoComprado(String produtoComprado) {
-        this.produtoComprado = produtoComprado;
-    }
-    public float getValorGasto() {
-        return valorGasto;
-    }
-    public void setValorGasto(float valorGasto) {
-        this.valorGasto = valorGasto;
-    }
-    public String getListaDesejos() {
-        return listaDesejos;
-    }
-    public void setListaDesejos(String listaDesejos) {
-        this.listaDesejos = listaDesejos;
-    }
-    public String getProdutoEmEspera() {
-        return produtoEmEspera;
-    }
-    public void setProdutoEmEspera(String produtoEmEspera) {
-        this.produtoEmEspera = produtoEmEspera;
+
+    public float getTotalGasto() {
+        return totalGasto;
     }
 
+    public void setTotalGasto(float total) {
+        this.totalGasto = total;
+    }
 
+    public void exibirDadosCLiente() {
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        System.out.println(super.toString());
+        System.out.println("Renda: " + df.format(this.renda));
+        System.out.println("Valor Total: " + df.format(this.totalGasto));
+        System.out.println("--------------");
+    }
 }
