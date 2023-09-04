@@ -13,6 +13,7 @@ public class Sistema {
             System.out.println("2) Vendedor");
             System.out.println("3) Caixa");
             System.out.println("4) Gerente");
+            System.out.println("9) Sair");
             System.out.print("Digite a Opcao: ");
             String op = reader.readLine();
 
