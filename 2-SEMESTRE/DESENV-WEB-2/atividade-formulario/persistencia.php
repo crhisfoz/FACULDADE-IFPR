@@ -4,18 +4,6 @@ error_reporting(E_ALL);
 
 define("DIR_PERSISTENCIA", "data");
 
-function checkEmptyFields($data)
-{
-    foreach ($data as $key => $value) {
-        if ($key === 'MULTIPLAYER' && $value === 'YES') {
-            // O campo multiplayer está marcado, não faça nada
-        } elseif (empty($value) && ($key !== 'MULTIPLAYER' && $key !== 'id')) {
-            return "O campo '$key' está vazio. Preencha todos os campos obrigatórios.";
-        }
-    }
-    return null; // Nenhum campo vazio foi encontrado
-}
-
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $submitValue = isset($_POST['submit']) ? $_POST['submit'] : '';
     $data = [];
@@ -39,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         case 'PD':
             $data['id'] = uniqid();
             $data['NOME'] = trim($_POST['productName']);
-            $data['PREÇO'] = trim($_POST['productPrice']);
+            $data['PRECO'] = trim($_POST['productPrice']);
             $filename = DIR_PERSISTENCIA . "/products.json";
             break;
         case 'P':
@@ -67,28 +55,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit;
     }
 
-    $emptyFieldError = checkEmptyFields($data);
 
-    if ($emptyFieldError) {
-        // Exibir mensagem de erro na página
-        echo json_encode(["error" => $emptyFieldError]);
+    if (file_exists($filename)) {
+        $existingData = json_decode(file_get_contents($filename), true);
     } else {
-        // Verifica se o arquivo já existe
-        if (file_exists($filename)) {
-            $existingData = json_decode(file_get_contents($filename), true);
-        } else {
-            $existingData = [];
-        }
-
-        // Adiciona os novos dados aos dados existentes
-        $existingData[] = $data;
-
-        // Salva os dados atualizados de volta no arquivo
-        file_put_contents($filename, json_encode($existingData));
-        echo json_encode(["success" => "Dados salvos com sucesso em $filename"]);
+        $existingData = [];
     }
+
+    // Adiciona os novos dados aos dados existentes
+    $existingData[] = $data;
+
+    // Salva os dados atualizados de volta no arquivo
+    file_put_contents($filename, json_encode($existingData));
+    echo json_encode(["success" => "Dados salvos com sucesso em $filename"]);
 } else {
     echo "NAO FOI ENVIADO";
 }
-?>
-``

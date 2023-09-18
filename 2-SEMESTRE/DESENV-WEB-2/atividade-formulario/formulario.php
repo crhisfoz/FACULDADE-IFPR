@@ -1,3 +1,7 @@
+<?php
+include_once("buscarDados.php");
+// $data = searchData();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,17 +33,17 @@
         <input type="hidden" name="button_value" id="button_value" value="">
 
         <div class="tipo_entidade" id="car">
-            <input type="text" placeholder="Digite a Marca do Veículo" name="mark" />
-            <input type="text" placeholder="Digite o Modelo" name="model" />
-            <input type="text" placeholder="Digite a Placa" name="plate" />
-            <input type="text" placeholder="Digite a Cor" name="color" />
+            <input type="text" placeholder="Digite a Marca do Veículo" name="mark" required />
+            <input type="text" placeholder="Modelo" name="model"required/>
+            <input type="text" placeholder="Placa" name="plate" required />
+            <input type="text" placeholder="Cor" name="color" required/>
             <button type="submit" name="button_car">Gravar</button>
             <button type="reset">Limpar</button>
         </div>
 
         <div class="tipo_entidade" id="game">
-            <input type="text" placeholder="Digite o nome do Jogo" name="title" />
-            <input type="text" placeholder="Digite o estilo" name="style" />
+            <input type="text" placeholder="Digite o nome do Jogo" name="title" required />
+            <input type="text" placeholder="Digite o estilo" name="style"  required/>
             <span class="span">Multiplayer
                 <input type="checkbox" name="mult" value="YES" />
             </span>
@@ -48,30 +52,30 @@
         </div>
 
         <div class="tipo_entidade" id="product">
-            <input type="text" placeholder="Digite o Nome do Produto" name="productName" />
-            <input type="number" placeholder="Digite o Preço" name="productPrice" />
+            <input type="text" placeholder="Digite o Nome do Produto" name="productName" required />
+            <input type="number" placeholder="Digite o Preço" name="productPrice" required />
             <button type="submit" name="button_prod">Gravar</button>
             <button type="reset">Limpar</button>
         </div>
 
         <div class="tipo_entidade" id="person">
-            <input type="text" placeholder="Digite o nome da Pessoa" name="personName" />
-            <input type="text" placeholder="Digite o cpf" name="cpf" />
-            <input type="email" placeholder="Digite o email" name="email" />
+            <input type="text" placeholder="Digite o nome da Pessoa" name="personName" required/>
+            <input type="text" placeholder="Digite o cpf" name="cpf" required />
+            <input type="email" placeholder="Digite o email" name="email" required/>
             <button type="submit" name="button_person">Gravar</button>
             <button type="reset">Limpar</button>
         </div>
 
         <div class="tipo_entidade" id="tourist_pt">
-            <input type="text" placeholder="Digite o nome do Ponto Turístico" name="touristName" />
-            <input type="text" placeholder="Digite a Cidade" name="city" />
+            <input type="text" placeholder="Digite o nome do Ponto Turístico" name="touristName" required />
+            <input type="text" placeholder="Digite a Cidade" name="city" required/>
             <button type="submit" name="button_tourist">Gravar</button>
             <button type="reset">Limpar</button>
         </div>
 
         <div class="tipo_entidade" id="music">
-            <input type="text" placeholder="Digite o nome da Música" name="musicName" />
-            <input type="text" placeholder="Digite do Cantor/banda" name="singer" />
+            <input type="text" placeholder="Digite o nome da Música" name="musicName" required />
+            <input type="text" placeholder="Digite do Cantor/banda" name="singer" required />
             <div class="music">
                 <span id="idnovo">Rock <input type="checkbox" name="musicType" value="1" /> </span>
                 <span>Sertanejo <input type="checkbox" name="musicType" value="2" /> </span>
@@ -83,6 +87,11 @@
             <button type="reset">Limpar</button>
         </div>
     </form>
+    <div id="result">
+        <table id="data-table">
+            <!-- Aqui serão exibidos os dados da seleção do usuário -->
+        </table>
+    </div>
 </body>
 
 </html>
