@@ -1,5 +1,5 @@
- interface ImportFile {
-    void loadFile(String nameFile);
-    void importData(String dataFiles);
+interface ImportFile {
+    void loadFile()throws Exception ;
+    void importData()throws Exception;
     
 }
