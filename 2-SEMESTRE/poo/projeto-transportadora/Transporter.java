@@ -10,26 +10,36 @@ public class Transporter implements ImportFile{
     private float normalShippingPrice;
     private float expressShippingPrice;
 
-    public static void main(String[] args) throws Exception {
-         Transporter transp = new Transporter();
-         transp.reader = new BufferedReader(new InputStreamReader(System.in));     
-        transp.loadFile();
+    public String readName() throws Exception {
+        this.reader = new BufferedReader(new InputStreamReader(System.in));
+        String exitName = "", partialName = "", extention = ".csv";
+        String array[];
 
+        System.out.println("Digite o nome do arquivo: ");
+        String inputName = reader.readLine();
         
+        switch (inputName) {
+            case "arqConfig.csv":
+                exitName = "arqConfig.csv";            
+                break;
+            case "encomendas_foz.csv":
+                exitName = "encomendas_foz.csv";            
+                break;
+            case "encomendas_smi.csv":
+                exitName = "encomendas_smi.csv";            
+                 break; 
+            default:
+            System.out.println("Nome inválido, verifique e tente novamente");
+                break;
+        };
+
+        return exitName;
     }
 
     public void loadFile() throws Exception {
 
-        System.out.println("Digite o nome do arquivo: ");
-        String inputName = this.reader .readLine();
-      
-        String inputDefaultName = "arqConfig.csv";
-        
+        String inputName = readName();
 
-        if ((!inputName.equals("arqConfig.csv") || inputName.equals(""))) {
-            inputName = inputDefaultName;
-        }
-        
         BufferedReader fileReader = new BufferedReader(new FileReader(inputName));
 
         String line = fileReader.readLine();
@@ -49,10 +59,9 @@ public class Transporter implements ImportFile{
         public void importData() throws Exception {
             
         String defaultNameFoz = "encomendas_foz.csv";
-         String defaultNameSmi = "encomendas_smi.csv";
+        String defaultNameSmi = "encomendas_smi.csv";
 
-        System.out.println("Digite o nome do arquivo: ");
-        String inputName = this.reader .readLine();
+        String inputName =  readName();
 
         BufferedReader fileReader = new BufferedReader(new FileReader(inputName));
         
@@ -66,21 +75,33 @@ public class Transporter implements ImportFile{
                Date shipping = array[1];
                float weight = Float.parseFloat(array[2]);
 
-                NormalOrder normal = new NormalOrder(0, null, expressShippingPrice)
-
+                NormalOrder normal = new NormalOrder(order, shipping, weight, normalShippingPrice);
                 
-                
-            }else if(inputName.equals(defaultNameSmi)){
-                ExpressOrder express = new ExpressOrder(0, null, expressShippingPrice, 0, 0)
+            }else (inputName.equals(defaultNameSmi)){
+                String order =  array[0];
+                Date shipping = array[1];
+                float weight = Float.parseFloat(array[2]);
+                int deadline = Integer.parseInt(array[3]);
+                int fone = Integer.parseInt(array[4]);
+                ExpressOrder express = new ExpressOrder(order, shipping, weight, expressShippingPrice, deadline, fone );
             
-            }else{
-                System.out.println ("Nome do arquivo inválido");
             }
-            
         }
         fileReader.close();
     }
 
+    public static void main(String[] args) throws Exception {
+        Transporter transp = new Transporter();
+        transp.reader = new BufferedReader(new InputStreamReader(System.in));     
+        transp.loadFile();
+        transp.importData();
 
+       
+   }
+
+   
+
+
+   
 
 }
