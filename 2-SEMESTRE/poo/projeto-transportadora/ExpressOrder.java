@@ -4,7 +4,7 @@ public class ExpressOrder extends NormalOrder {
     private int deadline;
     private int clientFone;
 
-    public ExpressOrder(int o, Date s, float w, int d, int cf) {
+    public ExpressOrder(int o, Date s, float w, float sp, int d, int cf) {
         super(o, s, w);
         this.deadline = d;
         this.clientFone = cf;
@@ -27,12 +27,12 @@ public class ExpressOrder extends NormalOrder {
         this.clientFone = clientFone;
     }
 
-    public double setShippingPrice(float price) {
+    public double setShippingPrice(float sp)) {
 
-        if (this.deadline == 2) {
-            return (price * this.getWeight()) * 1.25;
+        if (this.deadline <= 2) {
+            return (this.sp * this.getWeight()) * 1.25;
         } else {
-            return (this.getWeight() * price);
+            return (this.getWeight() * this.sp);
 
         }
     }
