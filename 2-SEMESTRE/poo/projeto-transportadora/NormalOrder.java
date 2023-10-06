@@ -1,17 +1,21 @@
-import java.sql.Date;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class NormalOrder{
     private int orderNum;
-    private Date shipping;
+    private String shipping;
     private float weight;
     private float shippingPrice;
+    private NumberFormat currencyFormatter;
 
-    public NormalOrder(int o, Date s, float w){
+    public NormalOrder(int o, String s, float w, float sp){
         this.orderNum = o;
         this.shipping = s;
         this.weight = w;
-    }
+        setShippingPrice(sp);
+        currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
 
+    }
 
 
     public int getOrderNum() {
@@ -20,10 +24,10 @@ public class NormalOrder{
     public void setOrderNum(int orderNum) {
         this.orderNum = orderNum;
     }
-    public Date getShipping() {
+    public String getShipping() {
         return shipping;
     }
-    public void setShipping(Date shipping) {
+    public void setShipping(String shipping) {
         this.shipping = shipping;
     }
     public float getWeight() {
@@ -37,16 +41,16 @@ public class NormalOrder{
         return shippingPrice;
     }
 
-    public double setShippingPrice(float price) {
-        return this.shippingPrice = price * this.weight;
+    public void setShippingPrice(float sp) {
+        this.shippingPrice = sp * this.weight;
     }
 
     public String detailsItem() {
         return "\n" + " ----- Exibindo Dados da Encomenda ------" + "\n" +
                 "Pedido Número: '" + orderNum + "',\n" +
                 "Data Postagem: '" + shipping + "',\n" +
-                "Peso: '" + weight + "',\n" +
-                "Frete: '" + shippingPrice + "',\n" + "'";
+                "Peso: '" + String.format("%.2f", weight).replace('.', ',') + "Kg" + "',\n" +
+                "Frete: '" + currencyFormatter.format(shippingPrice) + "'";
                 
     }
 
