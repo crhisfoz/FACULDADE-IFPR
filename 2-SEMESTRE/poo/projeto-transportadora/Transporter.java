@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 
 public class Transporter implements ImportFile {
     private BufferedReader reader;
-    private BufferedWriter writer;
     private float normalShippingPrice;
     private float expressShippingPrice;
     private NormalOrder[] normalOrder;
@@ -32,102 +31,123 @@ public class Transporter implements ImportFile {
         }
     }
 
-    public String readName() throws Exception {
+    public String readName(Boolean order) throws Exception {
         this.reader = new BufferedReader(new InputStreamReader(System.in));
+        String inputName = "";
         String exitName = "";
 
-        System.out.print("Digite o nome do arquivo para ser lido: ");
-        String inputName = reader.readLine();
+        if (order == false) {
+            System.out.print("Digite o nome do arquivo para ser lido: ");
+            inputName = reader.readLine();
 
-        switch (inputName) {
-            case "arqConfig":
+            if (inputName.equals("arqConfig") || inputName.equals("arqconfig")) {
                 exitName = "arqConfig.csv";
-                break;
-            case "encomendas_foz":
-                exitName = "encomendas_foz.csv";
-                break;
-            case "encomendas_smi":
-                exitName = "encomendas_smi.csv";
-                break;
-            default:
-                System.out.println("Nome inválido, verifique e tente novamente");
-                // Você deve tratar esse caso, talvez lançando uma exceção ou retornando um
-                // valor padrão
-                break;
-        }
+            } else {
+                exitName = null;
+            }
+        } else {
+            System.out.print("Digite o nome do arquivo de encomendas para ser lido: ");
+            inputName = reader.readLine();
+            switch (inputName) {
+                case "encomendas_foz":
+                    exitName = "encomendas_foz.csv";
+                    break;
+                case "encomendas_smi":
+                    exitName = "encomendas_smi.csv";
+                    break;
+                default:
+                    exitName = null;
+                    break;
+            }
 
+        }
         return exitName;
     }
 
     public void loadFile() throws Exception {
-        String inputName = readName();
-        System.out.println(inputName);
+        String inputName = readName(false);
+        if (inputName == null) {
+            throw new InvalidInputException(
+                    "O nome enviado por parâmetro para abrir o arquivo de configurações nao é válido, verifique e tente novamente");
 
-        BufferedReader fileReader = new BufferedReader(new FileReader(inputName));
-        // Lê e descarta a primeira linha
-        fileReader.readLine();
+        } else {
+            BufferedReader fileReader = new BufferedReader(new FileReader(inputName));
 
-        // Inicia o loop para ler as linhas subsequentes
-        String line;
+            // Lê e descarta a primeira linha
+            fileReader.readLine();
 
-        while ((line = fileReader.readLine()) != null) {
-            String array[] = line.split(";");
-            if (array[1].equals("EN")) {
-                normalShippingPrice = Float.parseFloat(array[2]);
-            } else {
-                expressShippingPrice = Float.parseFloat(array[2]);
+            // Inicia o loop para ler as linhas subsequentes
+            String line;
+
+            while ((line = fileReader.readLine()) != null) {
+                String array[] = line.split(";");
+                if (array[1].equals("EN")) {
+                    normalShippingPrice = Float.parseFloat(array[2]);
+                } else {
+                    expressShippingPrice = Float.parseFloat(array[2]);
+                }
             }
+            fileReader.close();
+
         }
-        fileReader.close();
+
     }
 
     public void importData() throws Exception {
 
-        String inputName = readName();
+        String inputName = readName(true);
+        if (inputName == null) {
+            throw new InvalidInputException(
+                    "O nome enviado por parâmetro para abrir o arquivo de encomendas nao é válido, verifique e tente novamente");
 
-        BufferedReader fileReader = new BufferedReader(new FileReader(inputName));
+        } else {
 
-        // Lê e descarta a primeira linha
-        fileReader.readLine();
+            BufferedReader fileReader = new BufferedReader(new FileReader(inputName));
 
-        // Inicia o loop para ler as linhas subsequentes
-        String line;
-        while ((line = fileReader.readLine()) != null) {
-            String array[] = line.split(";");
+            // Lê e descarta a primeira linha
+            fileReader.readLine();
 
-            if (array[2].equals("EN")) {
-                int order = Integer.parseInt(array[0]);
-                String shipping = array[1];
-                float weight = Float.parseFloat(array[4]);
+            // Inicia o loop para ler as linhas subsequentes
+            String line;
+            while ((line = fileReader.readLine()) != null) {
+                String array[] = line.split(";");
 
-                NormalOrder normalOrder = new NormalOrder(order, shipping, weight, normalShippingPrice);
+                if (array[2].equals("EN")) {
+                    int order = Integer.parseInt(array[0]);
+                    String shipping = array[1];
+                    float weight = Float.parseFloat(array[4]);
 
-                this.setOrder(normalOrder);
+                    NormalOrder normalOrder = new NormalOrder(order, shipping, weight, normalShippingPrice);
 
-            } else if (array[2].equals("EE")) {
-                int order = Integer.parseInt(array[0]);
-                String shipping = array[1];
-                int deadline = Integer.parseInt(array[3]);
-                float weight = Float.parseFloat(array[4]);
-                String fone = array[5];
+                    this.setOrder(normalOrder);
 
-                ExpressOrder expressOrder = new ExpressOrder(order, shipping, deadline, weight,
-                        expressShippingPrice, fone);
+                } else if (array[2].equals("EE")) {
+                    int order = Integer.parseInt(array[0]);
+                    String shipping = array[1];
+                    int deadline = Integer.parseInt(array[3]);
+                    float weight = Float.parseFloat(array[4]);
+                    String fone = array[5];
 
-                this.setOrder(null, expressOrder);
+                    ExpressOrder expressOrder = new ExpressOrder(order, shipping, deadline, weight,
+                            expressShippingPrice, fone);
+
+                    this.setOrder(null, expressOrder);
+                }
             }
+
+            fileReader.close();
         }
-        fileReader.close();
     }
 
     public void printOrders(String typeOrder) {
-        System.out.println("---------------");
-        System.out.println("Relatório de Ordens");
-        System.out.println("---------------");
+        System.out.println("-------------------------------------");
 
         switch (typeOrder) {
             case "normal":
-                System.out.println("Ordens Normais:");
+                System.out.println(" \t Relatório de Encomendas Normais \t\n");
+                if (qtExpress == 0) {
+                    System.out.println("Não Existem Encomendas Cadastradas ainda \n");
+                }
                 for (int i = 0; i < qtNormal; i++) {
                     NormalOrder normal = normalOrder[i];
                     System.out.println(normal.detailsItem());
@@ -136,7 +156,10 @@ public class Transporter implements ImportFile {
                 ;
                 break;
             case "express":
-                System.out.println("Ordens Expressas:");
+                System.out.println(" \t Relatório de Encomendas Expressas \t\n");
+                if (qtExpress == 0) {
+                    System.out.println("Não Existem Encomendas Cadastradas ainda");
+                }
                 for (int i = 0; i < qtExpress; i++) {
                     ExpressOrder express = expressOrder[i];
                     express.detailsItemExpress();
@@ -154,7 +177,7 @@ public class Transporter implements ImportFile {
     public void menu() throws Exception {
         String op = "";
         while (!op.equals("9")) {
-            System.out.println("----- Digite o número da opção desejada -----");
+            System.out.println("\n ----- Digite o número da opção desejada -----\n");
             System.out.println("[1] Importar Arquivo de encomendas");
             System.out.println("[2] Listar as Encomendas Normais");
             System.out.println("[3] Listar as encomendas Expressas");

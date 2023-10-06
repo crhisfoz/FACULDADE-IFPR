@@ -46,8 +46,7 @@ public class NormalOrder{
     }
 
     public String detailsItem() {
-        return "\n" + " ----- Exibindo Dados da Encomenda ------" + "\n" +
-                "Pedido Número: '" + orderNum + "',\n" +
+        return  "Pedido Número: '" + orderNum + "',\n" +
                 "Data Postagem: '" + shipping + "',\n" +
                 "Peso: '" + String.format("%.2f", weight).replace('.', ',') + "Kg" + "',\n" +
                 "Frete: '" + currencyFormatter.format(shippingPrice) + "'";
