@@ -1,7 +1,8 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.InputStreamReader;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Transporter implements ImportFile {
     private BufferedReader reader;
@@ -11,10 +12,12 @@ public class Transporter implements ImportFile {
     private ExpressOrder[] expressOrder;
     private int qtNormal;
     private int qtExpress;
+    private NumberFormat currencyFormatter;
 
     public Transporter() {
         this.normalOrder = new NormalOrder[1000];
         this.expressOrder = new ExpressOrder[1000];
+        currencyFormatter = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
     }
 
     public void setOrder(NormalOrder normal) throws Exception {
@@ -140,6 +143,11 @@ public class Transporter implements ImportFile {
     }
 
     public void printOrders(String typeOrder) {
+
+        float totalShippingNormal = 0;
+        float totalShippingExpress = 0;
+        float totalWeightNormal = 0;
+        float totalWeightExpress = 0;
         System.out.println("-------------------------------------");
 
         switch (typeOrder) {
@@ -149,11 +157,20 @@ public class Transporter implements ImportFile {
                     System.out.println("Não Existem Encomendas Cadastradas ainda \n");
                 }
                 for (int i = 0; i < qtNormal; i++) {
-                    NormalOrder normal = normalOrder[i];
-                    System.out.println(normal.detailsItem());
                     System.out.println("------------------");
+                    NormalOrder normal = normalOrder[i];
+                    totalShippingNormal += normalOrder[i].getShippingPrice();
+                    totalWeightNormal += normalOrder[i].getWeight();
+                    System.out.println(normal.detailsItem());
+
                 }
                 ;
+                System.out.println("------------------");
+                System.out.println(
+                        "Peso Total: '" + String.format("%.2f", totalWeightNormal).replace('.', ',') + "Kg" + "'");
+                System.out.println("Preço total de Frete: '" + currencyFormatter.format(totalShippingNormal) + "'");
+                System.out.println("------------------");
+
                 break;
             case "express":
                 System.out.println(" \t Relatório de Encomendas Expressas \t\n");
@@ -161,11 +178,19 @@ public class Transporter implements ImportFile {
                     System.out.println("Não Existem Encomendas Cadastradas ainda");
                 }
                 for (int i = 0; i < qtExpress; i++) {
-                    ExpressOrder express = expressOrder[i];
-                    express.detailsItemExpress();
                     System.out.println("------------------");
+                    ExpressOrder express = expressOrder[i];
+                    totalShippingExpress += expressOrder[i].getShippingPrice();
+                    totalWeightExpress += normalOrder[i].getWeight();
+                    express.detailsItemExpress();
+
                 }
                 ;
+                System.out.println("------------------");
+                System.out.println(
+                        "Peso Total: '" + String.format("%.2f", totalWeightExpress).replace('.', ',') + "Kg" + "'");
+                System.out.println("Preço Total de Frete: '" + currencyFormatter.format(totalShippingExpress) + "'");
+                System.out.println("------------------");
                 break;
             default:
                 System.out.println("Opção inválida");

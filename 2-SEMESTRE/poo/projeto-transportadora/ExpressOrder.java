@@ -1,7 +1,7 @@
 public class ExpressOrder extends NormalOrder {
     private int deadline;
     private String clientFone;
-    private float shippingPrice;
+    //private float shippingPrice;
 
     public ExpressOrder(int o, String s, int d, float w, float sp, String cf) {
         super(o, s, w, sp);
@@ -32,9 +32,9 @@ public class ExpressOrder extends NormalOrder {
         this.clientFone = clientFone;
     }
 
-    public float getShippingPrice() {
+   /* public float getShippingPrice() {
         return shippingPrice;
-    }
+    } */
 
     public void detailsItemExpress() {
         System.out.println(super.detailsItem());
