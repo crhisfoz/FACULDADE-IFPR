@@ -1,5 +1,5 @@
 <?php
-include_once(__DIR__ . "/dao/CursoDAO.php");
+include_once(__DIR__ . "/../dao/CursoDAO.php");
 
 class CursoController
 {

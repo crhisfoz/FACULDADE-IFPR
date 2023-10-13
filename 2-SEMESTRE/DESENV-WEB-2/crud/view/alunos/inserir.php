@@ -4,6 +4,9 @@ include_once(__DIR__ . "/../../model/Aluno.php");
 include_once(__DIR__ . "/../../model/Curso.php");
 include_once(__DIR__. "/../../controller/AlunoController.php");
 
+$msgErros = "";
+$aluno = NULL;
+
 if(isset($_POST['submetido'])){
     $nome = trim($_POST['nome']);
     $idade = is_numeric($_POST['idade'])? $_POST['idade'] : NULL; 
@@ -22,11 +25,12 @@ if(isset($_POST['submetido'])){
 
     $alunoCont = new AlunoControler;
     $erros = $alunoCont->inserir($aluno);
-    print_r($erros);
-    exit;
 
-    header("location: listar.php");
-    exit;
+    if(! $erros){
+        header("location: listar.php");
+        exit;
+    }    
+    $msgErros = implode("<br>", $erros);
 }
 
 include_once(__DIR__. "/form.php");

@@ -1,7 +1,7 @@
 <?php
 //Classe DAO para curso
-include_once(__DIR__ . "/../../util/Connection.php");
-include_once(__DIR__ . "/../../model/Curso.php");
+include_once(__DIR__ . "/../util/Connection.php");
+include_once(__DIR__ . "/../model/Curso.php");
 
 
 class CursoDAO
