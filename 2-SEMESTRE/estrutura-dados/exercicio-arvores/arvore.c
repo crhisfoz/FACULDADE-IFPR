@@ -149,19 +149,85 @@ void deleteTree(Tree *t, int value)
     }
 }
 
+void menu(){
+	
+    Tree tree = createTree(), result;
+	int op= 0;
+	int nodo = 0;
+	
+	while(op != 9){
+		printf("\t\n ------ Menu de Opcoes ------ \n");
+		printf("1) Inserir um Elemento na Arvore Binaria. \n");
+		printf("2) Exibir a Arvore em formato Pre-Ordem . \n");
+		printf("3) Exibir a Arvore em formato In-Ordem . \n");
+		printf("4) Exibir a Arvore em formato Pos-Ordem . \n");
+		printf("5) Buscar um Elemento na Arvore. \n");
+		printf("6) Deletar um Elemento da Arvore. \n");
+		printf("9) Sair . \n");
+		printf("\n Escolha o numero da opcao desejada: ");
+		scanf("%d", &op);
+		
+	
+		result = searchTree(tree,nodo);
+		if ((op!=1) && result == NULL) {
+			printf("\nResposta: A arvore ainda nao possui elementos. \n");
+		}else{
+						
+	switch(op){
+		printf("opcao selecionada %d", op);
+		case 1:
+			printf("Digite o elemento que deseja inserir: ");
+			scanf("%d", &nodo);
+			insertTree(&tree, nodo);
+			printf("Elemento \'%d\' inserido com sucesso \n", nodo);
+			break;
+		case 2:
+			printTreePreOrder(tree, 1);
+			break;
+		case 3:
+			printTreeInOrder(tree, 1);
+			break;
+		case 4:
+			printTreePosOrder(tree, 1);
+			break;
+		case 5:
+			printf("Digite o elemento que deseja Buscar: ");
+			scanf("%d", &nodo);
+			result = searchTree(tree,nodo);
+			if (result != NULL) {
+				printf("O elemento '%d' esta localizado na arvore retornada, no endereço \'%p\' \n",nodo, (void*)result);
+				} else {
+				printf("O elemento '%d' nao foi encontrado na arvore.\n", nodo);
+				}
+			break;
+		case 6:
+			printf("Digite o elemento que deseja Deletar: ");
+			scanf("%d", &nodo);
+			result = searchTree(tree,nodo);
+			if (result != NULL) {
+			deleteTree(&tree, nodo);
+			printf("O elemento \'%d\' esta foi deletado com sucesso\n",nodo);
+				}else {
+				printf("O elemento '%d' nao foi encontrado na arvore.\n", nodo);
+				};
+			break;
+		case 9:
+			printf("Encerrando o Programa. \n ");
+			break;
+		default:
+			printf("Opção selecionada invalida, verifique e tente novamente \n");
+			break;
+		
+		};
+			};
+
+	};
+}
+
+
 int main(int argc, char **argv)
 {
-    Tree tree = createTree();
-    insertTree(&tree, 10);
-    insertTree(&tree, 19);
-    insertTree(&tree, 2);
-    insertTree(&tree, 8);
-    insertTree(&tree, 45);
-    insertTree(&tree, 27);
-    insertTree(&tree, 31);
-    printTreePreOrder(tree, 1);
-    deleteTree(&tree, 2);
-    printTreePreOrder(tree, 1);
+   menu();
 
     return 0;
 }
