@@ -167,9 +167,7 @@ void menu(){
 		printf("\n Escolha o numero da opcao desejada: ");
 		scanf("%d", &op);
 		
-	
-		result = searchTree(tree,nodo);
-		if ((op!=1) && result == NULL) {
+		if ((op!=1) && tree == NULL) {
 			printf("\nResposta: A arvore ainda nao possui elementos. \n");
 		}else{
 						
