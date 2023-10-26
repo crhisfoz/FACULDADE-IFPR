@@ -53,7 +53,8 @@ include_once(__DIR__ . "/../include/header.php");
     <button type="submit">Gravar</button>
     <button type="reset">Limpar</button>
     
-    <input type="hidden" name="submetido"/>
+    <input type="hidden" name="id_aluno" value="<?php echo($aluno ? $aluno->getId() : '' ) ?>"/>
+    <input type="hidden" name="submetido" value="1"/>
 
 </form>
 
