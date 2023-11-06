@@ -1,7 +1,7 @@
 <?php
 include_once(__DIR__ . "/./Veiculo.php");
 
-class CLiente{
+class Cliente{
     private ?int $id;
     private ?string $nome;
     private ?int $cpf;
@@ -17,6 +17,26 @@ class CLiente{
         return $this->nome;
     }
     
+    
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * Get the value of nome
@@ -77,5 +97,6 @@ class CLiente{
 
         return $this;
     }
+
 }
 ?>

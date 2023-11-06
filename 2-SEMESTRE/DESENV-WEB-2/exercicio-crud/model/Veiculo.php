@@ -2,24 +2,45 @@
 
 class Veiculo{
     private ?int $id;
-    private ?string $nome;
+    private ?string $modelo;
     private ?string $categoria;
     private ?string $marca;
 
 
     public function __toString()
     {
-        return $this->nome;
+        return $this->modelo;
         return $this->categoria;
         return $this->marca;
     }
     
+    
+    /**
+     * Get the value of id
+     */ 
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
     /**
      * Get the value of nome
      */ 
-    public function getNome()
+    public function getModelo()
     {
-        return $this->nome;
+        return $this->modelo;
     }
 
     /**
@@ -27,9 +48,9 @@ class Veiculo{
      *
      * @return  self
      */ 
-    public function setNome($nome)
+    public function setModelo($modelo)
     {
-        $this->nome = $nome;
+        $this->modelo = $modelo;
 
         return $this;
     }
@@ -73,5 +94,6 @@ class Veiculo{
 
         return $this;
     }
+
 }
 ?>

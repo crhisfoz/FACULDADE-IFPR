@@ -1,6 +1,15 @@
 <?php
+include_once(__DIR__ . "/../../controller/VeiculoController.php");
+
+$veiculoCont = new VeiculoController();
+$carros = $veiculoCont->listar();
+
+?>
+
+<?php
 include_once(__DIR__ . "/../include/header.php")
 ?>
+
 <h1>Formulário de Locação</h1>
 <h4>Faça sua Reserva</h4>
 <form class="container" style="border: 1px solid #ccc; padding:10px;">
@@ -62,23 +71,25 @@ include_once(__DIR__ . "/../include/header.php")
     </div>
 
     <div>
-        <select style="margin-bottom: 5px; text-align: center">
-            <option value="">------ Selecione o Veículo ------ </option>
-            <option>Aqui vai renderizar os veículos disponiveis de cada marca</option>
-        </select>
+    <select style="margin-bottom: 5px; text-align: center">
+    <option value="">------ Selecione o Veículo ------ </option>
+    <?php foreach ($carros as $carro) : ?>
+        <option><?php if ($carro && $carro->getModelo()) echo $carro->getModelo(); ?></option>
+    <?php endforeach; ?>
+</select>
     </div>
     <div class="row">
         <div class="col-6 d-flex justify-content-center">
-        <div class="btn-group" style="width: 50%" >
-        <button class="btn-danger" style="width: 30%; margin: 5px; border-radius: 5px">Limpar</button>
-        <button class="btn-success" style="width: 30%; margin: 5px; border-radius: 5px" >Enviar</button>
-    </div>
+            <div class="btn-group" style="width: 50%">
+                <button class="btn-danger" style="width: 30%; margin: 5px; border-radius: 5px">Limpar</button>
+                <button class="btn-success" style="width: 30%; margin: 5px; border-radius: 5px">Enviar</button>
+            </div>
 
         </div>
-   
+
 
     </div>
-    
+
 </form>
 
 <?php
