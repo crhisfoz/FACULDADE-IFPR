@@ -1,6 +1,7 @@
 <?php 
 include_once(__DIR__ . "/../model/Veiculo.php");
 
+
 class VeiculoService{
     public function validarDados(Veiculo $veiculo){
         $erros = array();
@@ -16,4 +17,5 @@ class VeiculoService{
 
         return $erros;
     }
+
 }
