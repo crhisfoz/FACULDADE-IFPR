@@ -1,5 +1,21 @@
 -- Active: 1697651866503@@127.0.0.1@3306@conexao_bd
 USE conexao_bd;
+
+CREATE TABLE locacao(
+   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+   local VARCHAR(70) NOT NULL,
+   data VARCHAR(70) NOT NULL,
+   hora VARCHAR(70) NOT NULL,
+   id_cliente int NOT NULL
+);
+
+CREATE TABLE clientes(
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(14) NOT NULL,
+    id_veiculo int NOT NULL
+);
+
 CREATE TABLE veiculos (
      id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, 
      modelo VARCHAR(70) NOT NULL,

@@ -5,11 +5,11 @@ class Cliente{
     private ?int $id;
     private ?string $nome;
     private ?int $cpf;
-    private ?array $veiculo;
+    private ?Veiculo $veiculo;
 
-    public function __construct(array $veiculo)
+    public function __construct()
     {
-        $this->veiculo = $veiculo;
+        $this->veiculo = null;
     }
 
     public function __toString()
