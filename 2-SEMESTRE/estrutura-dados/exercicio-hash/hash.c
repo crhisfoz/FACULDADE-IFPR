@@ -118,7 +118,7 @@ void searchHash(List *h, int value){
 	
 	int i = hash(value);
 	searchList(h[i],value);
-}
+};
 
 void printErrorList()
 {
@@ -188,7 +188,7 @@ void switchOp(Hash h, int op)
 void menu()
 {
     Hash h;
-   createHash(h);
+	createHash(h);
     int op = 0;
     while (op != 9)
     {
