@@ -1,0 +1,16 @@
+if [ $# -eq 2 ] # testa se o número de parâmetros é igual a 2
+then
+    if [ $1 -gt $2 ] # teste se o primeiro parâmetro é maior que o segundo
+    then
+	echo "O maior é $1" 
+    elif [ $1 -eq $2 ] # testa se o o primeiro parâmetro é igual ao segundo
+    then
+       echo "Os dois números são iguais"
+     else
+	 echo "O maior é $2"
+    fi
+   let result=$1+$2
+   echo "O resultado da soma de $1 + $2 é $result"
+        else
+	    echo "Informe dois parâmetros"
+fi
