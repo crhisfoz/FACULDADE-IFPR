@@ -2,9 +2,9 @@
 include_once(__DIR__ . "/./Veiculo.php");
 
 class Cliente{
-    private ?int $id;
+    private ?string $id;
     private ?string $nome;
-    private ?int $cpf;
+    private ?string $cpf;
     private ?Veiculo $veiculo;
 
     public function __construct()

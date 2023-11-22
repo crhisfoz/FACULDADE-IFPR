@@ -16,6 +16,15 @@ class VeiculoDAO
         return $this->mapDBToObject($result);
     }
 
+    
+    public function update(Veiculo $veiculo){
+        $conn = Connection::getConnection();
+        $sql = "UPDATE veiculos  SET local = ?, data = ?, hora = ?, id_cliente = ? WHERE id = ? " ;
+        $stm = $conn->prepare($sql);
+        $stm->execute(array($locacao->getLocal(), $locacao->getData(), $locacao->getHora(), $locacao->getCliente()->getId(), $locacao->getId()));
+
+    }
+
     private function mapDBToObject(array  $result){
         $cars = array();
         foreach($result as $r){
