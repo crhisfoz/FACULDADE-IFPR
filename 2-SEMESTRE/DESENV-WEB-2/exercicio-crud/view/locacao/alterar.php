@@ -7,39 +7,35 @@ include_once(__DIR__ . "/../../controller/LocacaoController.php");
 include_once(__DIR__ . "/../../controller/ClienteController.php");
 
 $msgErros = "";
+$idVeiculo = NULL;
 
 $locacaoId = $_GET['id'];
 $locacaoCont = new LocacaoController();
 $locacaoAntiga = $locacaoCont->buscarPorId($locacaoId);
 $idCliente = $locacaoAntiga->getCliente()->getId();
-
+$idVeiculo = $locacaoAntiga->getCliente()->getVeiculo()->getId();
 
 $locacao = NULL;
-$idVeiculo = isset($_POST['veiculo']) ? $_POST['veiculo'] : NULL;
-
 
 if (isset($_POST['submetido'])) {
-   
+
     $local = trim($_POST['local']);
     $data = trim($_POST['data']);
     $hora = trim($_POST['hora']);
     $nome = trim($_POST['cliente']);
     $cpf = trim($_POST['cpf']);
     $idVeiculo = is_numeric($_POST['veiculo']) ? $_POST['veiculo'] : NULL;
-    printf("id veiculo dentro do isset --> " . $idVeiculo);
-    
+
     $locacao = new Locacao();
     $locacao->setId($locacaoId);
     $locacao->setLocal($local);
     $locacao->setData($data);
     $locacao->setHora($hora);
 
-
     $cliente = new Cliente();
     $cliente->setId($idCliente);
     $cliente->setNome($nome);
     $cliente->setCpf($cpf);
-  
 
     if ($idVeiculo) {
         $veiculo = new Veiculo();
@@ -49,13 +45,11 @@ if (isset($_POST['submetido'])) {
 
     $locacao->setCliente($cliente);
 
-    print_r($locacao);
-
     $locacaoCont = new LocacaoController();
     $clienteCont = new ClienteController();
 
     $erros = $locacaoCont->alterar($locacao);
-    //$errosCliente = $clienteCont->alterar($cliente);
+    $errosCliente = $clienteCont->alterar($cliente);
 
     if (!$erros && !$errosCliente) {
         header("location: listar.php");
@@ -69,7 +63,6 @@ if (isset($_POST['submetido'])) {
         $idLocacao = $_GET['id'];
     };
 
-    //Valida se a Locacao com o ID recebido existe
     $locacaoCont = new LocacaoController();
 
     $locacao = $locacaoCont->buscarPorId($idLocacao);

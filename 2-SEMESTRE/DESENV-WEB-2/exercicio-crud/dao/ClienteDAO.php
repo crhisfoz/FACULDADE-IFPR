@@ -1,9 +1,8 @@
 <?php
-//Classe DAO para curso
+
 include_once(__DIR__ . "/../util/Connection.php");
 include_once(__DIR__ . "/../model/Cliente.php");
 include_once(__DIR__ . "/../model/Veiculo.php");
-
 
 class ClienteDAO
 {
@@ -16,27 +15,27 @@ class ClienteDAO
         $result = $stm->fetchAll();
         return $this->mapDBToObject($result);
     }
-    
-    public function insert(Cliente $cliente){
+
+    public function insert(Cliente $cliente)
+    {
         $conn = Connection::getConnection();
-        $sql = "INSERT INTO clientes (nome, cpf, id_veiculo)" . " VALUES(?, ?, ?) " ;
+        $sql = "INSERT INTO clientes (nome, cpf, id_veiculo)" . " VALUES(?, ?, ?) ";
         $stm = $conn->prepare($sql);
         $stm->execute(array($cliente->getNome(), $cliente->getCpf(), $cliente->getVeiculo()->getId()));
         return $conn->lastInsertId();
-
     }
 
-      
-    public function update(Cliente $cliente){
+    public function update(Cliente $cliente)
+    {
         $conn = Connection::getConnection();
-        $sql = "UPDATE clientes SET nome = ?, cpf = ?, id_veiculo = ?)";
+        $sql = "UPDATE clientes SET id_veiculo = ?
+        WHERE id = ?" ;
         $stm = $conn->prepare($sql);
-        $stm->execute(array($cliente->getNome(), $cliente->getCpf(), $cliente->getVeiculo()->getId()));
-
+        $stm->execute(array($cliente->getVeiculo()->getId(), $cliente->getId()));
     }
 
-    
-    public function findById($id){
+    public function findById($id)
+    {
         $conn = Connection::getConnection();
         $sql = "SELECT * FROM clientes 
         WHERE clientes.id = ? 
@@ -47,9 +46,9 @@ class ClienteDAO
         $result = $stm->fetchAll();
         $this->mapDBToObject($result);
         $clientes = $this->mapDBToObject($result);
-        if($clientes){
+        if ($clientes) {
             return $clientes[0];
-        }else{
+        } else {
             return null;
         }
     }
@@ -57,9 +56,9 @@ class ClienteDAO
     private function mapDBToObject(array  $result)
     {
         $clients = array();
-        
+
         foreach ($result as $l) {
-            
+
             $client = new Cliente();
             $client->setId($l['id']);
             $client->setNome($l['nome']);
@@ -67,10 +66,6 @@ class ClienteDAO
 
             $vehicle = new Veiculo();
             $vehicle->setId($l['id_veiculo']);
-            //$vehicle->setCategoria($l['categoria']);
-           // $vehicle->setModelo($l['modelo']);
-           // $vehicle->setMarca($l['marca']);
-
             $client->setVeiculo($vehicle);
             array_push($clients, $client);
         }
