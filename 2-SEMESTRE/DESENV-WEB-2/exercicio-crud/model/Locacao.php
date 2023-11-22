@@ -1,7 +1,7 @@
 <?php
 include_once(__DIR__ . "/./Cliente.php");
 class Locacao{
-    private ?int $id;
+    private ?int $id = 0 ;
     private ?string $local;
     private ?string $data;
     private ?string $hora;
