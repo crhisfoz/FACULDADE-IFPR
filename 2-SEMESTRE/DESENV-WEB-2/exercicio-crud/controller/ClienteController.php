@@ -36,10 +36,6 @@ class ClienteController
 
     public function alterar(Cliente $cliente)
     {
-        $erros = $this->clienteService->validarDados($cliente);
-        if ($erros)
-            return $erros;
-
         $this->clienteDAO->update($cliente);
         return array();
     }

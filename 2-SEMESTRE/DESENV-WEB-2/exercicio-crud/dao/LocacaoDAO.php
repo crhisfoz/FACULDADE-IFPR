@@ -1,5 +1,5 @@
 <?php
-//Classe DAO para curso
+
 include_once(__DIR__ . "/../util/Connection.php");
 include_once(__DIR__ . "/../model/Locacao.php");
 include_once(__DIR__ . "/../model/Cliente.php");
@@ -17,23 +17,23 @@ class LocacaoDAO
         join clientes as c on c.id = loc.id_cliente
         join veiculos as v on v.id = c.id_veiculo
         ORDER BY data   
-        "
-        ;
+        ";
         $stm = $conn->prepare($sql);
         $stm->execute();
         $result = $stm->fetchAll();
         return $this->mapDBToObject($result);
     }
-    
-    public function insert(Locacao $locacao, $idCLiente){
+
+    public function insert(Locacao $locacao, $idCLiente)
+    {
         $conn = Connection::getConnection();
-        $sql = "INSERT INTO locacao (local, data, hora, id_cliente)" . " VALUES(?, ?, ?, ?) " ;
+        $sql = "INSERT INTO locacao (local, data, hora, id_cliente)" . " VALUES(?, ?, ?, ?) ";
         $stm = $conn->prepare($sql);
         $stm->execute(array($locacao->getLocal(), $locacao->getData(), $locacao->getHora(), $idCLiente));
-
     }
 
-    public function findById($id){
+    public function findById($id)
+    {
         $conn = Connection::getConnection();
         $sql = "SELECT loc.*, c.nome as nome_cliente, c.cpf as cpf_cliente, c.id_veiculo, v.categoria, v.marca, v.modelo 
         FROM locacao as loc
@@ -45,30 +45,28 @@ class LocacaoDAO
         $stm->execute([$id]);
         $result = $stm->fetchAll();
         $locacoes = $this->mapDBToObject($result);
-        if($locacoes){
+        if ($locacoes) {
             return $locacoes[0];
-        }else{
+        } else {
             return null;
         }
     }
-    
-    public function deleteById(int $id){
-        $conn = Connection::getConnection();
 
+    public function deleteById(int $id)
+    {
+        $conn = Connection::getConnection();
         $sql = "DELETE FROM locacao WHERE locacao.id = ? ";
         $stm = $conn->prepare($sql);
         $stm->execute([$id]);
-
     }
 
-    public function update(Locacao $locacao){
+    public function update(Locacao $locacao)
+    {
         $conn = Connection::getConnection();
-        $sql = "UPDATE locacao  SET local = ?, data = ?, hora = ?, id_cliente = ? WHERE id = ? " ;
+        $sql = "UPDATE locacao  SET local = ?, data = ?, hora = ?, id_cliente = ? WHERE id = ? ";
         $stm = $conn->prepare($sql);
         $stm->execute(array($locacao->getLocal(), $locacao->getData(), $locacao->getHora(), $locacao->getCliente()->getId(), $locacao->getId()));
-
     }
-
 
     private function mapDBToObject(array  $result)
     {

@@ -1,8 +1,9 @@
 <?php
 include_once(__DIR__ . "/./Veiculo.php");
 
-class Cliente{
-    private ?string $id;
+class Cliente
+{
+    private ?int $id = 0;
     private ?string $nome;
     private ?string $cpf;
     private ?Veiculo $veiculo;
@@ -16,11 +17,10 @@ class Cliente{
     {
         return $this->nome;
     }
-    
-    
+
     /**
      * Get the value of id
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -30,7 +30,7 @@ class Cliente{
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -40,7 +40,7 @@ class Cliente{
 
     /**
      * Get the value of nome
-     */ 
+     */
     public function getNome()
     {
         return $this->nome;
@@ -50,7 +50,7 @@ class Cliente{
      * Set the value of nome
      *
      * @return  self
-     */ 
+     */
     public function setNome($nome)
     {
         $this->nome = $nome;
@@ -60,7 +60,7 @@ class Cliente{
 
     /**
      * Get the value of cpf
-     */ 
+     */
     public function getCpf()
     {
         return $this->cpf;
@@ -70,7 +70,7 @@ class Cliente{
      * Set the value of cpf
      *
      * @return  self
-     */ 
+     */
     public function setCpf($cpf)
     {
         $this->cpf = $cpf;
@@ -80,7 +80,7 @@ class Cliente{
 
     /**
      * Get the value of veiculo
-     */ 
+     */
     public function getVeiculo()
     {
         return $this->veiculo;
@@ -90,13 +90,11 @@ class Cliente{
      * Set the value of veiculo
      *
      * @return  self
-     */ 
+     */
     public function setVeiculo($veiculo)
     {
         $this->veiculo = $veiculo;
 
         return $this;
     }
-
 }
-?>

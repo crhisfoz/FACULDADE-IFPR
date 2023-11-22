@@ -89,27 +89,27 @@ $carros = $veiculoCont->listar();
                 </div>
 
                 <div class="mb-3">
-    <label for="inputVeiculo" class="form-label"><b>Modelo</b></label>
-    <select class="form-control text-center" id="inputVeiculo" name="veiculo">
-        <option value="">------ Selecione o Veículo ------</option>
-        <?php foreach ($carros as $carro) : ?>
-            <option value="<?= $carro->getId() ?>" <?php if (
-                                                        $locacao && $locacao->getCliente() &&
-                                                        $locacao->getCliente()->getVeiculo() &&
-                                                        $locacao->getCliente()->getVeiculo()->getId() == $carro->getId()
-                                                    )
-                                                        echo 'selected';
-                                                    ?>>
-                <?= $carro->getModelo() ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
-</div>
+                    <label for="inputVeiculo" class="form-label"><b>Modelo</b></label>
+                    <select class="form-control text-center" id="inputVeiculo" name="veiculo">
+                        <option value="">------ Selecione o Veículo ------</option>
+                        <?php foreach ($carros as $carro) : ?>
+                            <option value="<?= $carro->getId() ?>" <?php if (
+                                                                        $locacao && $locacao->getCliente() &&
+                                                                        $locacao->getCliente()->getVeiculo() &&
+                                                                        $locacao->getCliente()->getVeiculo()->getId() == $carro->getId()
+                                                                    )
+                                                                        echo 'selected';
+                                                                    ?>>
+                                <?= $carro->getModelo() ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
 
 
                 <div class="text-center">
-                    <button class="btn btn-danger" style="width: 30%; margin: 5px; border-radius: 5px">Limpar</button>
-                    <button class="btn btn-success" style="width: 30%; margin: 5px; border-radius: 5px">Enviar</button>
+                    <button class="btn btn-danger" style="width: 30%; margin: 5px; border-radius: 5px" type="reset">Limpar</button>
+                    <button class="btn btn-success" style="width: 30%; margin: 5px; border-radius: 5px" type="submit">Enviar</button>
                     <input type="hidden" name="submetido" />
                 </div>
 

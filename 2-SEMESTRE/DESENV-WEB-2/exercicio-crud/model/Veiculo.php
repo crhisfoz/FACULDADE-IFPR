@@ -1,11 +1,11 @@
 <?php
 
-class Veiculo{
-    private ?int $id;
+class Veiculo
+{
+    private ?int $id = 0;
     private ?string $modelo;
     private ?string $categoria;
     private ?string $marca;
-
 
     public function __toString()
     {
@@ -13,11 +13,10 @@ class Veiculo{
         return $this->categoria;
         return $this->marca;
     }
-    
-    
+
     /**
      * Get the value of id
-     */ 
+     */
 
     public function getId()
     {
@@ -28,7 +27,7 @@ class Veiculo{
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -37,7 +36,7 @@ class Veiculo{
     }
     /**
      * Get the value of nome
-     */ 
+     */
     public function getModelo()
     {
         return $this->modelo;
@@ -47,7 +46,7 @@ class Veiculo{
      * Set the value of nome
      *
      * @return  self
-     */ 
+     */
     public function setModelo($modelo)
     {
         $this->modelo = $modelo;
@@ -57,7 +56,7 @@ class Veiculo{
 
     /**
      * Get the value of categoria
-     */ 
+     */
     public function getCategoria()
     {
         return $this->categoria;
@@ -67,7 +66,7 @@ class Veiculo{
      * Set the value of categoria
      *
      * @return  self
-     */ 
+     */
     public function setCategoria($categoria)
     {
         $this->categoria = $categoria;
@@ -77,7 +76,7 @@ class Veiculo{
 
     /**
      * Get the value of marca
-     */ 
+     */
     public function getMarca()
     {
         return $this->marca;
@@ -87,13 +86,11 @@ class Veiculo{
      * Set the value of marca
      *
      * @return  self
-     */ 
+     */
     public function setMarca($marca)
     {
         $this->marca = $marca;
 
         return $this;
     }
-
 }
-?>
