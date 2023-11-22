@@ -3,29 +3,41 @@
 include_once(__DIR__ . "/../../model/Locacao.php");
 include_once(__DIR__ . "/../../model/Cliente.php");
 include_once(__DIR__. "/../../controller/VeiculoController.php");
+include_once(__DIR__. "/../../controller/LocacaoController.php");
 
 $msgErros = "";
 $locacao = NULL;
+
 
 if(isset($_POST['submetido'])){
     $local = trim($_POST['local']);
     $data = trim($_POST['data']);
     $hora = trim($_POST['hora']);
-    $idCliente = trim($_POST['cliente']);
+    $nome = trim($_POST['cliente']);
+    $cpf = trim($_POST['cpf']);
+    $idVeiculo = is_numeric($_POST['veiculo']) ? $_POST['veiculo'] : NULL;
+    
 
     $locacao = new Locacao();
     $locacao->setLocal($local);
     $locacao->setData($data);
     $locacao->setHora($hora);
-    $locacao->setCliente($cliente);
-    if($idCliente){
-        $cliente = new Cliente();
-        $curso->setId($idCurso);
-        $aluno->setCurso($curso);
-    };
+  
+    $cliente = new Cliente();
+    $cliente->setNome($nome);
+    $cliente->setCpf($cpf);
 
-    $veicul = new LocacaoCon;
-    $erros = $alunoCont->inserir($aluno);
+    if($idVeiculo){
+        $veiculo = new Veiculo();
+        $veiculo->setId($idVeiculo);
+        $cliente->setVeiculo($veiculo);
+    }
+
+    $locacao->setCliente($cliente);
+    
+    //print_r($locacao);
+    $locacaoCont = new LocacaoController();
+    $erros = $locacaoCont->inserir($locacao);
 
     if(! $erros){
         header("location: listar.php");

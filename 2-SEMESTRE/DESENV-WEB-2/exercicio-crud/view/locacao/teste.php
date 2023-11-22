@@ -23,25 +23,25 @@ $carros = $veiculoCont->listar();
 
                 <div class="row">
                     <div class="col-12 mb-3">
-                        <label for="local" class="form-label"><b>Local</b></label>
+                        <label for="local">Local</label>
                         <input class="form-control" id="local" placeholder="Digite o Local de retirada" name="local" value="<?= ($locacao ? $locacao->getLocal() : '') ?>" />
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-6 mb-3">
-                        <label for="inputData" class="form-label"><b>Data</b></label>
+                        <label for="inputData">Data</label>
                         <input type="text" id="inputData" class="form-control" placeholder="Data" name="data" value="<?= ($locacao ? $locacao->getData() : '') ?>" />
                     </div>
                     <div class="col-6 mb-3">
-                        <label for="inputHora" class="form-label"><b>Hora</b></label>
+                        <label for="inputHora">Hora</label>
                         <input type="text" id="inputHora" class="form-control" placeholder="Hora" name="hora" value="<?= ($locacao ? $locacao->getHora() : '') ?>" />
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-6 mb-3">
-                        <label for="inputNome" class="form-label"><b>Nome</b></label>
+                        <label>Nome</label>
                         <?php
                         if ($locacao && $locacao->getId() > 0) {
                             echo '<input 
@@ -64,7 +64,7 @@ $carros = $veiculoCont->listar();
                         ?>
                     </div>
                     <div class="col-6 mb-3">
-                        <label for="inputCpf" class="form-label"><b>CPF</b></label>
+                        <label>CPF</label>
                         <?php
                         if ($locacao && $locacao->getId() > 0) {
                             echo '<input 
@@ -89,23 +89,22 @@ $carros = $veiculoCont->listar();
                 </div>
 
                 <div class="mb-3">
-    <label for="inputVeiculo" class="form-label"><b>Modelo</b></label>
-    <select class="form-control text-center" id="inputVeiculo" name="veiculo">
-        <option value="">------ Selecione o Veículo ------</option>
-        <?php foreach ($carros as $carro) : ?>
-            <option value="<?= $carro->getId() ?>" <?php if (
-                                                        $locacao && $locacao->getCliente() &&
-                                                        $locacao->getCliente()->getVeiculo() &&
-                                                        $locacao->getCliente()->getVeiculo()->getId() == $carro->getId()
-                                                    )
-                                                        echo 'selected';
-                                                    ?>>
-                <?= $carro->getModelo() ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
-</div>
-
+                    <label for="inputVeiculo" class="form-label">Modelo</label>
+                    <select class="form-control" id="inputVeiculo" name="veiculo">
+                        <option value="">------ Selecione o Veículo ------</option>
+                        <?php foreach ($carros as $carro) : ?>
+                            <option value="<?= $carro->getId() ?>" <?php if (
+                                                                        $locacao && $locacao->getCliente() &&
+                                                                        $locacao->getCliente()->getVeiculo() &&
+                                                                        $locacao->getCliente()->getVeiculo()->getId() == $carro->getId()
+                                                                    )
+                                                                        echo 'selected';
+                                                                    ?>>
+                                <?= $carro->getModelo() ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
 
                 <div class="text-center">
                     <button class="btn btn-danger" style="width: 30%; margin: 5px; border-radius: 5px">Limpar</button>

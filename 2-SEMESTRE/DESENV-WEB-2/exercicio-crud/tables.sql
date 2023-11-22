@@ -1,4 +1,4 @@
--- Active: 1697651866503@@127.0.0.1@3306@conexao_bd
+-- Active: 1695857830734@@127.0.0.1@3306
 USE conexao_bd;
 
 CREATE TABLE locacao(
@@ -68,5 +68,3 @@ INSERT INTO veiculos (modelo, categoria, marca) VALUES
 
 
 select * from veiculos;
-
-ALTER TABLE veiculos RENAME COLUMN nome TO modelo;

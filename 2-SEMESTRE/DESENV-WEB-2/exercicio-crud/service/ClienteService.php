@@ -11,6 +11,9 @@ class ClienteService{
         if(! $cliente->getCpf()){
             array_push($erros, "Informe o CPF!");
         }
+        if(!$cliente->getVeiculo()){
+            array_push($erros, "Informe o Veículo!");
+        }
 
         return $erros;
     }
