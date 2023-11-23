@@ -53,6 +53,14 @@ class ClienteDAO
         }
     }
 
+    public function deleteById(int $id)
+    {
+        $conn = Connection::getConnection();
+        $sql = "DELETE FROM clientes WHERE clientes.id = ? ";
+        $stm = $conn->prepare($sql);
+        $stm->execute([$id]);
+    }
+
     private function mapDBToObject(array  $result)
     {
         $clients = array();
