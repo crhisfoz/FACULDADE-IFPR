@@ -16,6 +16,17 @@ class VeiculoDAO
         return $this->mapDBToObject($result);
     }
 
+    public function listCategoriesAndBrands()
+    {
+        $conn = Connection::getConnection();
+        $sql = "SELECT DISTINCT categoria, marca FROM veiculos";
+        $stm = $conn->prepare($sql);
+        $stm->execute();
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC); // Usar FETCH_ASSOC para obter um array associativo
+        return $result;
+    }
+
+
     private function mapDBToObject(array  $result)
     {
         $cars = array();

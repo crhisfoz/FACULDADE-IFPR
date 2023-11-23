@@ -2,12 +2,18 @@
 include_once(__DIR__ . "/../../controller/VeiculoController.php");
 include_once(__DIR__ . "/../../model/Locacao.php");
 include_once(__DIR__ . "/../../controller/ClienteController.php");
+include_once(__DIR__ . "/../../service/funcoes.php");
 
 $clienteCont = new ClienteController();
 $cliente = $clienteCont->listar();
 
 $veiculoCont = new VeiculoController();
 $carros = $veiculoCont->listar();
+$categoriasMarcas = $veiculoCont->listarCategoriasMarcas();
+//print_r($categoriasMarcas);
+
+$categoriasUnicas = extrairCategoriasMarcasUnicas($categoriasMarcas, 'categoria');
+$marcasUnicas = extrairCategoriasMarcasUnicas($categoriasMarcas, 'marca');
 
 ?>
 
@@ -88,6 +94,27 @@ $carros = $veiculoCont->listar();
                     </div>
                 </div>
 
+<!-- Select de Categorias -->
+<div class="mb-3">
+    <label for="selectCategoria" class="form-label"><b>Categoria</b></label>
+    <select class="form-control text-center" id="selectCategoria" name="categoria">
+        <option value="">------ Selecione a Categoria ------</option>
+        <?php foreach ($categoriasUnicas as $categoria) : ?>
+            <option value="<?= $categoria ?>"><?= $categoria ?></option>
+        <?php endforeach; ?>
+    </select>
+</div>
+
+<!-- Select de Marcas -->
+<div class="mb-3">
+    <label for="selectMarca" class="form-label"><b>Marca</b></label>
+    <select class="form-control text-center" id="selectMarca" name="marca">
+        <option value="">------ Selecione a Marca ------</option>
+        <?php foreach ($marcasUnicas as $marca) : ?>
+            <option value="<?= $marca ?>"><?= $marca ?></option>
+        <?php endforeach; ?>
+    </select>
+</div>
                 <div class="mb-3">
                     <label for="inputVeiculo" class="form-label"><b>Modelo</b></label>
                     <select class="form-control text-center" id="inputVeiculo" name="veiculo">
@@ -105,8 +132,6 @@ $carros = $veiculoCont->listar();
                         <?php endforeach; ?>
                     </select>
                 </div>
-
-
                 <div class="text-center">
                     <button class="btn btn-danger" style="width: 30%; margin: 5px; border-radius: 5px" type="reset">Limpar</button>
                     <button class="btn btn-success" style="width: 30%; margin: 5px; border-radius: 5px" type="submit">Enviar</button>
