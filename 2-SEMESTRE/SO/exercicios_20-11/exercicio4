@@ -1,0 +1,44 @@
+# Verifica se foram fornecidos três argumentos (dois valores e uma operação)
+if [ $# -ne 3 ]; then
+    echo "Por favor, forneça dois valores e uma operação (+, -, x ou /) como argumentos."
+    exit 1
+fi
+
+# Armazena os valores e a operação fornecidos como argumentos
+valor1=$1
+operacao=$2
+valor2=$3
+
+# Verifica se os valores fornecidos são números
+if ! [[ "$valor1" =~ ^[0-9]+$ ]] || ! [[ "$valor2" =~ ^[0-9]+$ ]]; then
+    echo "Os valores fornecidos devem ser números inteiros."
+    exit 1
+fi
+
+# Realiza a operação aritmética correspondente
+case $operacao in
+    "+")
+        resultado=$((valor1 + valor2))
+        ;;
+    "-")
+        resultado=$((valor1 - valor2))
+        ;;
+    "x")
+        resultado=$((valor1 * valor2))
+        ;;
+    "/")
+        # Verifica se o divisor é zero
+        if [ "$valor2" -eq 0 ]; then
+            echo "Erro: Divisão por zero."
+            exit 1
+        fi
+        resultado=$(echo "scale=2; $valor1 / $valor2" | bc)
+        ;;
+    *)
+        echo "Operação inválida. Use +, -, x , ou /."
+        exit 1
+        ;;
+esac
+
+# Exibe o resultado
+echo "Resultado da operação $valor1 $operacao $valor2 é: $resultado"
