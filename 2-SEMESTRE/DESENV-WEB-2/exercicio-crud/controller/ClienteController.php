@@ -40,4 +40,9 @@ class ClienteController
         return array();
     }
 
+    public function excluirPorId(int $id){
+        return $this->clienteDAO->deleteById($id);
+        
+    }
+
 }
