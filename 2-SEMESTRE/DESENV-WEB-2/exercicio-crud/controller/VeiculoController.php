@@ -12,11 +12,16 @@ class VeiculoController
         $this->veiculoDAO = new VeiculoDAO();
     }
 
-    
     public function listar()
     {
 
         return $this->veiculoDAO->list();
+    }
+
+    public function listarCategoriasMarcas()
+    {
+
+        return $this->veiculoDAO->listCategoriesAndBrands();
     }
 }
 
