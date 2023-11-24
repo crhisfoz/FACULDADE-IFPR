@@ -1,0 +1,20 @@
+# Verifica se foi fornecido um argumento (nome do arquivo)
+if [ $# -eq 0 ]
+then
+    echo "Por favor, forneça o nome do arquivo como argumento."
+    exit 1
+fi
+
+# Armazena o nome do arquivo fornecido como argumento
+arquivo=$1
+
+# Verifica se o arquivo existe
+if [ -f $arquivo ]
+then
+    # Obtém o tamanho do arquivo em bytes usando ls -l e cut
+    tamanho=$(ls -l $arquivo | cut -d ' ' -f 5)
+    echo "O tamanho do arquivo $arquivo é: $tamanho bytes."
+else
+    echo "O arquivo $arquivo não existe."
+fi
+
