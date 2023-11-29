@@ -1,0 +1,12 @@
+echo "Informe o usuário:"
+read user
+
+grep -i "^$user:" /etc/passwd > /dev/null
+
+if [ $? -eq 0 ]
+then
+    echo "$user é um usuário cadastrado."
+else
+    echo "$user não é um usuário cadastrado."
+fi
+

@@ -1,0 +1,15 @@
+count=0
+tempfile=$(mktemp)
+
+while [ $# -gt 0 ]; do
+    echo "$1" >> "$tempfile"
+    shift
+    let count=$count+1
+done
+
+echo "Foram informados $count parâmetros"
+
+echo "Parametros informados:"
+cat "$tempfile"
+
+rm "$tempfile"
