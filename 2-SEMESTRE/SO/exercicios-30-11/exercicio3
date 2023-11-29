@@ -1,0 +1,40 @@
+op=0
+
+while [ $op -ne 9 ]
+do
+    echo ""
+    echo "1 - Exibir o status da utilização das partições do sistema (df -h)"
+    echo "2 - Exibir a relação dos usuários logados (who)"
+    echo "3 - Exibir a data e hora do sistema (date)"
+    echo "9 - Sair"
+    echo "Informe a opção desejada "
+
+    read op
+
+    case $op in
+        1)
+            echo " -------------------------- "
+            df -h | awk 'BEGIN {print "Sist. Arq.\tTam.\tUsado\tDisp.\tUso%\tMontado em"} NR>1 {print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6}' OFS="\t"
+            echo " ----------------------------------- "
+            ;;
+        2)
+            echo " ----------Usuário------------ "
+            whoami
+            echo " ----------------------------------- "
+            ;;
+        3)
+            echo " --------- Data ----------------- "
+            date
+            echo " ----------------------------------- "
+            ;;
+        9)
+            echo " ----------------------------------- "
+            echo "Saindo..."
+            ;;
+        *)
+            echo " ----------------------------------- "
+            echo "Opção inválida"
+            echo " ----------------------------------- "
+            ;;
+    esac
+done
