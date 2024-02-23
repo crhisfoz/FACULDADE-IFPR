@@ -4,7 +4,8 @@ namespace App\Model;
 
 use \JsonSerializable;
 
-class Veiculo {
+class Veiculo implements JsonSerializable
+{
 
     private ?int $id;
     private ?string $modelo;
@@ -15,7 +16,8 @@ class Veiculo {
     private ?string $cor;
 
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->id = 0;
         $this->modelo = null;
         $this->marca = null;
@@ -25,10 +27,23 @@ class Veiculo {
         $this->cor = null;
     }
 
+    public function jsonSerialize(): array
+    {
+        return array(
+            "id" => $this->id,
+            "modelo" => $this->modelo,
+            "marca" => $this->marca,
+            "categoria" => $this->categoria,
+            "potencia" => $this->potencia,
+            "cambio" => $this->cambio,
+            "cor" => $this->cor
+        );
+    }
+
 
     /**
      * Get the value of id
-     */ 
+     */
     public function getId()
     {
         return $this->id;
@@ -38,7 +53,7 @@ class Veiculo {
      * Set the value of id
      *
      * @return  self
-     */ 
+     */
     public function setId($id)
     {
         $this->id = $id;
@@ -48,7 +63,7 @@ class Veiculo {
 
     /**
      * Get the value of modelo
-     */ 
+     */
     public function getModelo()
     {
         return $this->modelo;
@@ -58,7 +73,7 @@ class Veiculo {
      * Set the value of modelo
      *
      * @return  self
-     */ 
+     */
     public function setModelo($modelo)
     {
         $this->modelo = $modelo;
@@ -68,7 +83,7 @@ class Veiculo {
 
     /**
      * Get the value of marca
-     */ 
+     */
     public function getMarca()
     {
         return $this->marca;
@@ -78,7 +93,7 @@ class Veiculo {
      * Set the value of marca
      *
      * @return  self
-     */ 
+     */
     public function setMarca($marca)
     {
         $this->marca = $marca;
@@ -88,7 +103,7 @@ class Veiculo {
 
     /**
      * Get the value of categoria
-     */ 
+     */
     public function getCategoria()
     {
         return $this->categoria;
@@ -98,7 +113,7 @@ class Veiculo {
      * Set the value of categoria
      *
      * @return  self
-     */ 
+     */
     public function setCategoria($categoria)
     {
         $this->categoria = $categoria;
@@ -108,7 +123,7 @@ class Veiculo {
 
     /**
      * Get the value of potencia
-     */ 
+     */
     public function getPotencia()
     {
         return $this->potencia;
@@ -118,7 +133,7 @@ class Veiculo {
      * Set the value of potencia
      *
      * @return  self
-     */ 
+     */
     public function setPotencia($potencia)
     {
         $this->potencia = $potencia;
@@ -128,7 +143,7 @@ class Veiculo {
 
     /**
      * Get the value of cambio
-     */ 
+     */
     public function getCambio()
     {
         return $this->cambio;
@@ -138,7 +153,7 @@ class Veiculo {
      * Set the value of cambio
      *
      * @return  self
-     */ 
+     */
     public function setCambio($cambio)
     {
         $this->cambio = $cambio;
@@ -148,7 +163,7 @@ class Veiculo {
 
     /**
      * Get the value of cor
-     */ 
+     */
     public function getCor()
     {
         return $this->cor;
@@ -158,7 +173,7 @@ class Veiculo {
      * Set the value of cor
      *
      * @return  self
-     */ 
+     */
     public function setCor($cor)
     {
         $this->cor = $cor;
