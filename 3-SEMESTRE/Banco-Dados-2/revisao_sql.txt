@@ -1,0 +1,33 @@
+CREATE TABLE distributors(
+	did serial primary key,
+	name varchar(40) DEFAULT 'Luso Films',
+	modtime timestamp DEFAULT current_timestamp
+);
+
+INSERT INTO distributors (name) VALUES ('Lucas Filmes');
+
+INSERT INTO distributors (name) VALUES ('Series Filmes');
+
+\d distributors =  mostrar estrutura da tabela
+
+CREATE TABLE aluno (
+	aluno_id serial primary key,
+ 	nome varchar(80) not null,
+	cpf varchar(20) UNIQUE
+);
+
+INSERT INTO aluno (nome,cpf) VALUES ('MARIA', '1');
+INSERT INTO aluno (nome,cpf) VALUES ('JOÃO', '1'); // ERRO por ser o mesmo cpf
+INSERT INTO aluno (nome,cpf) VALUES ('JOÃO', '9');
+
+CREATE TABLE product (
+	pid serial, did integer NOT NULL,
+	description varchar(40), FOREIGN KEY(did)
+	REFERENCES distribuitors(did)
+);
+
+CREATE TABLE product(
+	pid serial, did integer NOT NULL,
+	description varchar(40), FOREIGN KEY(did)
+	REFERENCES distribuitors(did)
+);
