@@ -3,7 +3,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
-public class System {
+public class AirportSystem {
   
     private Airport airport;
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -18,9 +18,10 @@ public class System {
                     System.out.println("-------------------------");
                     System.out.println("[1] Cadastrar um novo Voo");
                     System.out.println("[2] Listar voos existentes");
-                    System.out.println("[3] Consultar um voo");
-                    System.out.println("[4] Escolher um voo");
+                    System.out.println("[3] Consultar um Aeroporto");
+                    System.out.println("[4] Escolher um Aeroporto");
                     System.out.println("[9] Sair");
+                    System.out.print("Digite sua opção: ");
                     op = this.reader.readLine();
         
                     switch (op) {
@@ -54,13 +55,13 @@ public class System {
                 String key = "";
                 Airport apt = new Airport();
                 System.out.println("Digite a Sigla que deseja cadastrar para o Aeroporto: ");
-                key = reader.readLine();
+                key = reader.readLine().toUpperCase(); // converte a sigla para letra maiuscula para armazenar
                 System.out.println("Digite o nome que deseja cadastrar para o Aeroporto");
                 apt.setName(reader.readLine());
                 System.out.println("Digite a Cidade que deseja cadastrar para o Aeroporto");
-                apt.setName(reader.readLine());
+                apt.setCity(reader.readLine());
                 System.out.println("Digite a Altitude que deseja cadastrar para o Aeroporto");
-                apt.setName(reader.readLine());
+                apt.setAlt(Integer.parseInt(reader.readLine()));
                 states.put(key, apt);
                 
 
@@ -72,7 +73,7 @@ public class System {
                     System.out.println("Não existem voos cadastrados ainda, voltando ao Menu anterior");
                 }else {
                     for (Airport apt : this.states.values()) {
-                        System.out.println("SIGLA: "+ this.states.keySet()+ " - "+ apt.getName());
+                        System.out.println("SIGLA: "+ this.states.keySet() + " - "+ apt.getName());
                         
                     }
                 }
@@ -85,7 +86,7 @@ public class System {
                     System.out.println("Não existem voos cadastrados ainda, voltando ao Menu anterior");
                 }else {
                     System.out.println(" Digite a sigla do Aeroporto que deseja deletar");
-                    search = reader.readLine();
+                    search = reader.readLine().toUpperCase();
                     if (!this.states.containsKey(search)){
                         System.out.println(search + " não encontrado");
                     }else{
@@ -102,7 +103,7 @@ public class System {
                     System.out.println("Não existem voos cadastrados ainda, voltando ao Menu anterior");
                 }else {
                     System.out.println(" Digite a sigla do Aeroporto que deseja Pesquisar");
-                    search = reader.readLine();
+                    search = reader.readLine().toUpperCase();
                     if (!this.states.containsKey(search)){
                         System.out.println(search + " não encontrado");
                     }else{
@@ -118,10 +119,10 @@ public class System {
                 }
 ;
             }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
-        System system = new System();
-        system.menu();
+        AirportSystem airportSystem = new AirportSystem();
+        airportSystem.menu();
         
     }
 }
