@@ -2,10 +2,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Budget {
+    private int number;
     private String details;
     private String date; // Mantemos a data formatada como uma string
     private float price;
 
+    public float getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
     public String getDetails() {
         return details;
     }

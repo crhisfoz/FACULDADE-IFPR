@@ -1,8 +1,10 @@
+import java.util.ArrayList;
+
 public class Client {
-    String name;
-    String cpf;
-    String phone;
-    String budget[] = null;
+   private String name;
+   private String cpf;
+   private String phone;
+   private ArrayList<Budget> budgets = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -28,12 +30,12 @@ public class Client {
         this.phone = fone;
     }
 
-    public String[] getBudget() {
-        return budget;
+    public ArrayList<Budget> getBudgets() {
+        return budgets;
     }
 
-    public void setBudget(String[] budget) {
-        this.budget = budget;
+    public void setBudgets(ArrayList<Budget> budgets) {
+        this.budgets = budgets;
     }
 
 }
