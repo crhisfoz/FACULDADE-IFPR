@@ -1,18 +1,20 @@
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+
 public class Budget {
-    private int number;
+    private int code;
     private String details;
     private String date; // Mantemos a data formatada como uma string
     private float price;
 
-    public float getNumber() {
-        return number;
+    public float getCode() {
+        return code;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setCode(int number) {
+        this.code = number;
     }
     public String getDetails() {
         return details;
@@ -35,9 +37,11 @@ public class Budget {
         this.date = localDate.format(formatter);
     }
 
-    public float getPrice() {
-        return price;
+    public String getPrice() {
+        DecimalFormat df = new DecimalFormat("R$ #,##0.00");
+        return df.format(price);
     }
+   
 
     public void setPrice(float price) {
         this.price = price;
