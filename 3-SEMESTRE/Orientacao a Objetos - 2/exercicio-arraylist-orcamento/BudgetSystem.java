@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+
 public class BudgetSystem {
 
     private ArrayList<Client> client = new ArrayList<Client>(); // será usado em vários métodos para criar o cliente
@@ -13,7 +14,7 @@ public class BudgetSystem {
     public void menu() throws Exception {
         String op = "";
         while (!op.equals("9")) {
-            System.out.println("-------------------------");
+            System.out.println("------------ MENU -------------");
             System.out.println("[1] Cadastrar um novo Cliente");
             System.out.println("[2] Listar Clientes");
             System.out.println("[3] Cadastrar um novo orçamento");
@@ -63,12 +64,16 @@ public class BudgetSystem {
 
         if (!itClient.hasNext()) {
             System.out.println("Não existem clientes cadastrados ainda.");
-        }
-        while (itClient.hasNext()) {
-            Client cli = itClient.next();
-            System.out.println("Nome: " + cli.getName());
-            System.out.println("CPF: " + cli.getCpf());
-            System.out.println("Telefone: " + cli.getPhone());
+        } else {
+            System.out.println("-------- Lista de Clientes -------");
+            while (itClient.hasNext()) {
+
+                Client cli = itClient.next();
+                System.out.println("Nome: " + cli.getName());
+                System.out.println("CPF: " + cli.getCpf());
+                System.out.println("Telefone: " + cli.getPhone());
+                System.out.println("---------------");
+            }
         }
 
     }
@@ -80,68 +85,83 @@ public class BudgetSystem {
     }
 
     private void putBudget() throws Exception {
-         Iterator<Client> itClient = client.iterator();
+        Iterator<Client> itClient = client.iterator();
 
         if (!itClient.hasNext()) {
-            System.out.println("Não existem clientes cadastrados ainda.");
-        }
+            System.out.println("Não existem clientes cadastrados ainda, voltando ao Menu anterior.");
+        } else {
 
-        String search = "";
-        System.out.println("Digite o nome ou Cpf do cliente qual deseja cadastrar um Orçamento");
-        search = reader.readLine();
+            String search = "";
+            System.out.println("Digite o nome ou Cpf do cliente qual deseja cadastrar um Orçamento");
+            search = reader.readLine();
 
-       while (itClient.hasNext()) {
-            Client cli = itClient.next();
-            if (cli.getName().equals(search) || cli.getCpf().equals(search)) {
-                Budget budget = new Budget();
-                budget.setNumber(generateRandomInteger());
-                budget.setDate();
-                System.out.println("Digite os detalhes do Orçamento.");
-                budget.setDetails(reader.readLine());
-                System.out.println("Digite o preço total do Orçamento");
-                budget.setPrice(Float.parseFloat(reader.readLine()));
-                cli.getBudgets().add(budget);
-                System.out.println("Orçamento cadastrado com sucesso para o cliente: " + cli.getName());
-                return; // Encerra o loop após encontrar o cliente
+            while (itClient.hasNext()) {
+                Client cli = itClient.next();
+                if (cli.getName().equals(search) || cli.getCpf().equals(search)) {
+                    Budget budget = new Budget();
+                    budget.setCode(generateRandomInteger());// geracao de um numero inteiro para ser um codigo de 
+                    budget.setDate();
+                    System.out.println("Digite os detalhes do Orçamento.");
+                    budget.setDetails(reader.readLine());
+                    System.out.println("Digite o preço total do Orçamento: ");             
+                    budget.setPrice(Float.parseFloat(reader.readLine()));
+                    cli.getBudgets().add(budget);
+                    System.out.println("Orçamento cadastrado com sucesso para o cliente: " + cli.getName());
+                    return; // Encerra o loop após encontrar o cliente
+                }
             }
+            System.out.println(
+                "Cliente não encontrado, verifique o nome ou cpf digitados e tente novamente, voltando ao Menu anterior");
         }
 
-        System.out.println("Cliente não encontrado, verifique o nome ou cpf digitados e tente novamente");
+       
     }
 
     private void budgetsList() throws Exception {
-           Iterator<Client> itClient = client.iterator();
+        Iterator<Client> itClient = client.iterator();
+            
+        // Verifica se existem clientes antes de iniciar o loop
         if (!itClient.hasNext()) {
-            System.out.println("Não existem clientes cadastrados ainda.");
+            System.out.println("Não existem clientes cadastrados ainda, voltando ao Menu anterior.");
+            return; // Sai do método se não há clientes cadastrados
         }
         
         String search = "";
         System.out.println("Digite o Cpf do cliente para Listar os Orçamentos");
         search = reader.readLine();
+    
+        boolean clientFound = false; // Flag para indicar se o cliente foi encontrado
 
+        // Loop para procurar o cliente
         while (itClient.hasNext()) {
             Client cli = itClient.next();
             if (cli.getCpf().equals(search)) {
                 ArrayList<Budget> budgets = cli.getBudgets();
                 if (budgets.isEmpty()) {
-                    System.out.println("O Cliente " + cli.getName() + " ainda não possui Orçamentos cadastrados");
+                    System.out.println("O Cliente " + cli.getName()
+                            + " ainda não possui Orçamentos cadastrados, voltando ao Menu anterior");
+                    clientFound = true; // Define a flag como true quando o cliente é encontrado
                 } else {
-                    System.out.println("-------- Orçamentos para o Cliente -------" );
+                    System.out.println("-------- Orçamentos para o Cliente -------");
                     System.out.println("NOME: " + cli.getName());
                     for (Budget budget : budgets) {
-                        System.out.println("  CÓDIGO: " + budget.getNumber());
+                        System.out.println("  CÓDIGO: " + budget.getCode());
                         System.out.println("  DATA: " + budget.getDate());
                         System.out.println("  DETALHES: " + budget.getDetails());
                         System.out.println("  PREÇO TOTAL: " + budget.getPrice());
                     }
+                    clientFound = true; // Define a flag como true quando o cliente é encontrado
                 }
-                return; // Encerra o loop após encontrar o cliente
+                break; // Sai do loop após encontrar o cliente
             }
         }
-
-        System.out.println("Cliente não encontrado, verifique o cpf digitado e tente novamente");
+    
+        // Exibe a mensagem se o cliente não for encontrado
+        if (!clientFound) {
+            System.out.println("Cliente não encontrado, verifique o cpf digitado e tente novamente, voltando ao Menu anterior");
+        }
     }
-
+    
     public static void main(String[] args) throws Exception {
         BudgetSystem budSystem = new BudgetSystem();
         budSystem.menu();
