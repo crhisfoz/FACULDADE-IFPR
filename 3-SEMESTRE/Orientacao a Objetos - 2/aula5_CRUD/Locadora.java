@@ -21,7 +21,7 @@ public class Locadora {
             try {
                 opcao = Integer.parseInt(scanner.nextLine());
             } catch (Exception e) {
-                System.out.println("Informe um nro inteiro");
+                System.out.println("Informe um numero inteiro");
             }
 
             switch (opcao) {
