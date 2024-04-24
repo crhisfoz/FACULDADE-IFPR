@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.sql.SQLException;
 import java.util.Random;
 
-public class DaoSalesman {
+public class DaoVendedor {
         private Connection conn;
         private Statement st;
 
@@ -29,17 +29,19 @@ public class DaoSalesman {
             }
         }
 
-        public boolean inserir (Salesman s){
+        public boolean inserir (Vendedor v){
             boolean result = false;
             try{
                 this.conectar();
                 Random random = new Random();
                 int id = random.nextInt();
 
-                String command = "INSERT INTO tb_vendedor VALUES("+ s.getId() + "', '"+ v.getCpf() + "', 
-                '" + s.getName() + "', '" + s.getCpf() + "', " + v.getPhone()+ "', '" + s.getSalary() + ");";
-                st.executeUpdate(command);
-                result = triue;
+                String comando = "INSERT INTO tb_veiculos VALUES("
+                + v.getId() + "', '" + v.getCpf() + "', '" + 
+                v.getNome() + "', '" + v.getTelefone() 
+                + "', " + v.getSalario()+ ");";
+                st.executeUpdate(comando);
+                result = true;
         }catch(Exception e){
             System.out.println("Erro ao inserir dados: " + e.getMessage());
 
@@ -49,20 +51,20 @@ public class DaoSalesman {
         return result;
     }
 
-    public ArrayList<Salesman> searchAll(){
-        ArrayList<Salesman> results = new ArrayList<Salesman>();
+    public ArrayList<Vendedor> buscarTodos(){
+        ArrayList<Vendedor> resultado = new ArrayList<Vendedor>();
         try {
             this.conectar();
             ResultSet rs = st.executeQuery(
                 "SELECT * FROM tb_vendedor ORDER BY nome");
             while(rs.next()){
               
-                Salesman v = new Salesman();
+                Vendedor v = new Vendedor();
                 v.setId(rs.getInt("id"));
-                v.setName(rs.getString("name"));
+                v.setNome(rs.getString("nome"));
                 v.setCpf(rs.getInt("cpf"));
-                v.setPhone(rs.getInt("phone"));
-                v.setSalary(rs.getFloat("salary"));
+                v.setTelefone(rs.getInt("telefone"));
+                v.setSalario(rs.getFloat("salario"));
                 results.add(v);
             }
         } catch (Exception e) {
@@ -70,6 +72,6 @@ public class DaoSalesman {
         }finally{
             this.desconectar();
         }
-        return results;
+        return resultado;
     }
 }
