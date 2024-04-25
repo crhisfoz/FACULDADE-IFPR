@@ -78,7 +78,7 @@ public class GerenciadorVendedor {
     }
 
     public void listarTodos(){
-        ArrayList<Vendedor> vendedores = daoVendedores.buscarTodos();
+        ArrayList<Vendedor> vendedores = daoVendedor.buscarTodos();
         System.out.println("----------------------------");
         System.out.println("Vendedores Cadastrados");
         for(Veiculo v : veiculos){
@@ -156,7 +156,7 @@ public class GerenciadorVendedor {
                 v.setSalario(Float.parseFloat(salario));
             }
 
-            int qtdeAlterado = daoVeiculo.alterar(v);
+            int qtdeAlterado = daoVendedor.alterar(v);
             if(qtdeAlterado > 0){
                 System.out.println("Atualizado com sucesso.");
             }else{
